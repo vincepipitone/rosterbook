@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f4f6f3;
+  --ink: #14213d;
+  --ink-soft: #4a5572;
+  --rule: #c7ccc4;
+  --rule-soft: #e2e6df;
+  --red: #b3302a;
+  --red-soft: #f6e4e2;
+  --green: #2f6b3a;
+  --green-soft: #e1eee2;
+  --amber: #b07a12;
+  --amber-soft: #f6ecd3;
+  --blue-soft: #e3e8f2;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-rule: var(--rule);
+  --color-rule-soft: var(--rule-soft);
+  --color-red: var(--red);
+  --color-red-soft: var(--red-soft);
+  --color-green: var(--green);
+  --color-green-soft: var(--green-soft);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-blue-soft: var(--blue-soft);
+  --font-sans: var(--font-archivo);
+  --font-narrow: var(--font-archivo-narrow);
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+a {
+  text-underline-offset: 3px;
+}
+
+.board {
+  font-family: var(--font-archivo-narrow), var(--font-archivo), sans-serif;
+  font-size: 15px;
+  line-height: 1.25;
+}
+.board th {
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-align: left;
+  padding: 6px 10px 6px 0;
+  border-bottom: 2px solid var(--ink);
+  white-space: nowrap;
+}
+.board td {
+  padding: 6px 10px 6px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: top;
+}
+.board tr.group td {
+  padding-top: 18px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--rule);
+}
+.board tr:hover td {
+  background: #ffffff;
+}
+.num {
+  text-align: right;
+  padding-right: 14px !important;
+}
+
+.stamp {
+  display: inline-block;
+  font-family: var(--font-archivo-narrow), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  padding: 3px 5px;
+  border: 1.5px solid currentColor;
+  border-radius: 2px;
+  margin: 1px 4px 1px 0;
+  white-space: nowrap;
+}
+.stamp-red { color: var(--red); background: var(--red-soft); }
+.stamp-green { color: var(--green); background: var(--green-soft); }
+.stamp-amber { color: var(--amber); background: var(--amber-soft); }
+.stamp-ink { color: var(--ink-soft); background: var(--blue-soft); }
+
+.prose-narrow {
+  max-width: 68ch;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  details summary {
+    transition: color 120ms;
+  }
+}
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}

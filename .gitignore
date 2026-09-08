@@ -1,0 +1,15 @@
+node_modules/
+.next/
+out/
+.env*
+.vercel
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+*.log
+tsconfig.tsbuildinfo
+
+
+# Arizona Phil table (CC BY-ND): fetched nightly for validation, not redistributed
+data/validation/azphil_cubs_*.csv

@@ -1,0 +1,75 @@
+name: nightly refresh
+
+on:
+  schedule:
+    - cron: "0 12 * * *"   # 12:00 UTC, after FanGraphs' overnight RosterResource load
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nightly-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Fetch (Stats API, FanGraphs, Arizona Phil)
+        run: |
+          set -euo pipefail
+          Y=$(date -u +%Y)
+          python -m pipeline.fetch.statsapi seasons --years 2005-$Y
+          python -m pipeline.fetch.statsapi transactions --years $Y-$Y
+          python -m pipeline.fetch.statsapi rosters --years $Y-$Y
+          python -m pipeline.fetch.statsapi rosters --dates today
+          python -m pipeline.fetch.fangraphs roster
+          python -m pipeline.fetch.fangraphs contracts
+          python -m pipeline.fetch.statsapi people
+          python -m pipeline.fetch.statsapi people-refresh
+          python -m pipeline.fetch.azphil || echo "AZ Phil page unavailable; keeping last snapshot"
+
+      - name: Build, validate, export
+        run: |
+          set -euo pipefail
+          python -m pipeline.build.build_transactions
+          python -m pipeline.build.build_players
+          python -m pytest pipeline/tests -q
+          python -m pipeline.validate.run
+          python -m pipeline.export.export_site_json
+          python - <<'EOF'
+          import json, sys
+          v = json.load(open("data/validation/validation.json"))
+          assert v["transactions"]["ok"], "transaction volume sanity failed"
+          a = v["azphil"]["agreement"]
+          assert a["mls"]["pct"] >= 95 and a["options"]["pct"] >= 85, f"AZ Phil agreement dropped: {a}"
+          assert v["fangraphs"]["pct"] >= 90, f"FanGraphs options agreement dropped: {v['fangraphs']['pct']}"
+          print("gates ok", a, v["fangraphs"]["pct"])
+          EOF
+
+      - name: Commit and push
+        run: |
+          set -euo pipefail
+          git config user.name "rosterbook-bot"
+          git config user.email "rosterbook-bot@users.noreply.github.com"
+          git add -A data/raw data/processed data/validation public/data
+          if git diff --cached --quiet; then echo "nothing changed"; exit 0; fi
+          git commit -m "data: nightly refresh $(date -u +%Y-%m-%d)"
+          for i in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git pull --rebase origin main
+          done
+          exit 1

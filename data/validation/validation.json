@@ -1,0 +1,2206 @@
+{
+ "generated_at": "2026-09-08T20:12:50+00:00",
+ "azphil": {
+  "source": "thecubreporter.com/cubs-40-man-roster",
+  "page_updated": "9-5-2026",
+  "n_rows": 49,
+  "n_matched": 49,
+  "agreement": {
+   "mls": {
+    "n": 49,
+    "pct": 100.0
+   },
+   "options": {
+    "n": 47,
+    "pct": 95.9
+   },
+   "assignments": {
+    "n": 48,
+    "pct": 98.0
+   },
+   "status": {
+    "n": 48,
+    "pct": 98.0
+   },
+   "contract": {
+    "n": 47,
+    "pct": 95.9
+   }
+  },
+  "rows": [
+   {
+    "name": "Javier Assad",
+    "matched": true,
+    "mls": {
+     "azphil": "3+027",
+     "ours": "3+027",
+     "agree": true
+    },
+    "options": {
+     "azphil": "2",
+     "ours": "2",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "2",
+     "ours": "2",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SALARY ARBITRATION ELIGIBLE",
+     "ours": "2027 CLUB OPTION",
+     "agree": false
+    }
+   },
+   {
+    "name": "Matthew Boyd",
+    "matched": true,
+    "mls": {
+     "azphil": "9+057",
+     "ours": "9+057",
+     "agree": true
+    },
+    "options": {
+     "azphil": "0",
+     "ours": "0",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "N/A",
+     "ours": "N/A",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "2027 MUTUAL OPTION",
+     "ours": "2027 MUTUAL OPTION",
+     "agree": true
+    }
+   },
+   {
+    "name": "Ben Brown",
+    "matched": true,
+    "mls": {
+     "azphil": "1+169",
+     "ours": "1+169",
+     "agree": true
+    },
+    "options": {
+     "azphil": "1",
+     "ours": "1",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "60-DAY IL",
+     "ours": "60-DAY IL",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SALARY ARBITRATION ELIGIBLE (\"SUPER TWO\")",
+     "ours": "SALARY ARBITRATION ELIGIBLE (\"SUPER TWO\")",
+     "agree": true
+    }
+   },
+   {
+    "name": "Edward Cabrera",
+    "matched": true,
+    "mls": {
+     "azphil": "3+147",
+     "ours": "3+147",
+     "agree": true
+    },
+    "options": {
+     "azphil": "0",
+     "ours": "0",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "N/A",
+     "ours": "N/A",
+     "agree": true
+    },
+    "status": {
+     "azphil": "15-DAY IL",
+     "ours": "15-DAY IL",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SALARY ARBITRATION ELIGIBLE",
+     "ours": "SALARY ARBITRATION ELIGIBLE",
+     "agree": true
+    }
+   },
+   {
+    "name": "Aaron Civale",
+    "matched": true,
+    "mls": {
+     "azphil": "6+058",
+     "ours": "6+058",
+     "agree": true
+    },
+    "options": {
+     "azphil": "2",
+     "ours": "2",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "FREE AGENT",
+     "ours": "FREE AGENT",
+     "agree": true
+    }
+   },
+   {
+    "name": "Tyler Ferguson",
+    "matched": true,
+    "mls": {
+     "azphil": "1+089",
+     "ours": "1+089",
+     "agree": true
+    },
+    "options": {
+     "azphil": "1",
+     "ours": "1",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "0",
+     "ours": "0",
+     "agree": true
+    },
+    "status": {
+     "azphil": "OPTIONED",
+     "ours": "OPTIONED",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "ours": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "agree": true
+    }
+   },
+   {
+    "name": "Braxton Garrett",
+    "matched": true,
+    "mls": {
+     "azphil": "3+168",
+     "ours": "3+168",
+     "agree": true
+    },
+    "options": {
+     "azphil": "1",
+     "ours": "1",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "3",
+     "ours": "3",
+     "agree": true
+    },
+    "status": {
+     "azphil": "OPTIONED",
+     "ours": "OPTIONED",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SALARY ARBITRATION ELIGIBLE",
+     "ours": "SALARY ARBITRATION ELIGIBLE",
+     "agree": true
+    }
+   },
+   {
+    "name": "Kevin Gausman",
+    "matched": true,
+    "mls": {
+     "azphil": "11+151",
+     "ours": "11+151",
+     "agree": true
+    },
+    "options": {
+     "azphil": "0",
+     "ours": "0",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "N/A",
+     "ours": "N/A",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "FREE AGENT",
+     "ours": "FREE AGENT",
+     "agree": true
+    }
+   },
+   {
+    "name": "Hunter Harvey",
+    "matched": true,
+    "mls": {
+     "azphil": "6+047",
+     "ours": "6+047",
+     "agree": true
+    },
+    "options": {
+     "azphil": "1",
+     "ours": "1",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "60-DAY IL",
+     "ours": "60-DAY IL",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "2027 MUTUAL OPTION",
+     "ours": "2027 MUTUAL OPTION",
+     "agree": true
+    }
+   },
+   {
+    "name": "Porter Hodge",
+    "matched": true,
+    "mls": {
+     "azphil": "1+117",
+     "ours": "1+117",
+     "agree": true
+    },
+    "options": {
+     "azphil": "1",
+     "ours": "1",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "60-DAY IL",
+     "ours": "60-DAY IL",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SALARY ARBITRATION ELIGIBLE (\"SUPER TWO\") OR PRE-ARBITRATION / AUTO-RENEWAL (TBD)",
+     "ours": "SALARY ARBITRATION ELIGIBLE (\"SUPER TWO\") OR PRE-ARBITRATION / AUTO-RENEWAL (TBD)",
+     "agree": true
+    }
+   },
+   {
+    "name": "Gavin Hollowell",
+    "matched": true,
+    "mls": {
+     "azphil": "0+110",
+     "ours": "0+110",
+     "agree": true
+    },
+    "options": {
+     "azphil": "1",
+     "ours": "1",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "2",
+     "ours": "2",
+     "agree": true
+    },
+    "status": {
+     "azphil": "15-DAY IL",
+     "ours": "15-DAY IL",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "ours": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "agree": true
+    }
+   },
+   {
+    "name": "Clay Holmes",
+    "matched": true,
+    "mls": {
+     "azphil": "7+031",
+     "ours": "7+031",
+     "agree": true
+    },
+    "options": {
+     "azphil": "0",
+     "ours": "0",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "N/A",
+     "ours": "N/A",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "2027 PLAYER OPTION",
+     "ours": "2027 PLAYER OPTION",
+     "agree": true
+    }
+   },
+   {
+    "name": "Cade Horton",
+    "matched": true,
+    "mls": {
+     "azphil": "1+000",
+     "ours": "1+000",
+     "agree": true
+    },
+    "options": {
+     "azphil": "3",
+     "ours": "3",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "60-DAY IL",
+     "ours": "60-DAY IL",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "ours": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "agree": true
+    }
+   },
+   {
+    "name": "Shota Imanaga",
+    "matched": true,
+    "mls": {
+     "azphil": "2+000",
+     "ours": "2+000",
+     "agree": true
+    },
+    "options": {
+     "azphil": "3",
+     "ours": "3",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "FREE AGENT",
+     "ours": "FREE AGENT",
+     "agree": true
+    }
+   },
+   {
+    "name": "Antoine Kelly",
+    "matched": true,
+    "mls": {
+     "azphil": "0+000",
+     "ours": "0+000",
+     "agree": true
+    },
+    "options": {
+     "azphil": "2",
+     "ours": "2",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "3",
+     "ours": "3",
+     "agree": true
+    },
+    "status": {
+     "azphil": "OPTIONED",
+     "ours": "OPTIONED",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "ours": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "agree": true
+    }
+   },
+   {
+    "name": "Riley Martin",
+    "matched": true,
+    "mls": {
+     "azphil": "0+000",
+     "ours": "0+000",
+     "agree": true
+    },
+    "options": {
+     "azphil": "3",
+     "ours": "3",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "60-DAY IL",
+     "ours": "60-DAY IL",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "ours": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "agree": true
+    }
+   },
+   {
+    "name": "Phil Maton",
+    "matched": true,
+    "mls": {
+     "azphil": "8+047",
+     "ours": "8+047",
+     "agree": true
+    },
+    "options": {
+     "azphil": "1",
+     "ours": "1",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "60-DAY IL",
+     "ours": "60-DAY IL",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SIGNED THRU 2027 + 2028 CLUB OPTION",
+     "ours": "SIGNED THRU 2027 + 2028 CLUB OPTION",
+     "agree": true
+    }
+   },
+   {
+    "name": "Shelby Miller",
+    "matched": true,
+    "mls": {
+     "azphil": "10+016",
+     "ours": "10+016",
+     "agree": true
+    },
+    "options": {
+     "azphil": "2",
+     "ours": "2",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "60-DAY IL",
+     "ours": "60-DAY IL",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SIGNED THRU 2027 + 2028 CLUB OPTION",
+     "ours": "SIGNED THRU 2027 + 2028 CLUB OPTION",
+     "agree": true
+    }
+   },
+   {
+    "name": "Jayden Murray",
+    "matched": true,
+    "mls": {
+     "azphil": "0+026",
+     "ours": "0+026",
+     "agree": true
+    },
+    "options": {
+     "azphil": "3",
+     "ours": "3",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "1",
+     "ours": "1",
+     "agree": true
+    },
+    "status": {
+     "azphil": "OPTIONED",
+     "ours": "OPTIONED",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "ours": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "agree": true
+    }
+   },
+   {
+    "name": "Daniel Palencia",
+    "matched": true,
+    "mls": {
+     "azphil": "1+154",
+     "ours": "1+154",
+     "agree": true
+    },
+    "options": {
+     "azphil": "1",
+     "ours": "1",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SALARY ARBITRATION ELIGIBLE (\"SUPER TWO\")",
+     "ours": "SALARY ARBITRATION ELIGIBLE (\"SUPER TWO\")",
+     "agree": true
+    }
+   },
+   {
+    "name": "David Peterson",
+    "matched": true,
+    "mls": {
+     "azphil": "5+089",
+     "ours": "5+089",
+     "agree": true
+    },
+    "options": {
+     "azphil": "1",
+     "ours": "1",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "FREE AGENT",
+     "ours": "FREE AGENT",
+     "agree": true
+    }
+   },
+   {
+    "name": "Colin Rea",
+    "matched": true,
+    "mls": {
+     "azphil": "6+057",
+     "ours": "6+057",
+     "agree": true
+    },
+    "options": {
+     "azphil": "0",
+     "ours": "0",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "N/A",
+     "ours": "N/A",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "2027 CLUB OPTION",
+     "ours": "2027 CLUB OPTION",
+     "agree": true
+    }
+   },
+   {
+    "name": "Ethan Roberts",
+    "matched": true,
+    "mls": {
+     "azphil": "2+131",
+     "ours": "2+131",
+     "agree": true
+    },
+    "options": {
+     "azphil": "1",
+     "ours": "1",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "3",
+     "ours": "3",
+     "agree": true
+    },
+    "status": {
+     "azphil": "OPTIONED",
+     "ours": "OPTIONED",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SALARY ARBITRATION ELIGIBLE",
+     "ours": "SALARY ARBITRATION ELIGIBLE",
+     "agree": true
+    }
+   },
+   {
+    "name": "Ryan Rolison",
+    "matched": true,
+    "mls": {
+     "azphil": "2+114",
+     "ours": "2+114",
+     "agree": true
+    },
+    "options": {
+     "azphil": "2",
+     "ours": "1",
+     "agree": false
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SALARY ARBITRATION ELIGIBLE",
+     "ours": "SALARY ARBITRATION ELIGIBLE",
+     "agree": true
+    }
+   },
+   {
+    "name": "Justin Steele",
+    "matched": true,
+    "mls": {
+     "azphil": "4+143",
+     "ours": "4+143",
+     "agree": true
+    },
+    "options": {
+     "azphil": "0",
+     "ours": "0",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "N/A",
+     "ours": "N/A",
+     "agree": true
+    },
+    "status": {
+     "azphil": "60-DAY IL",
+     "ours": "60-DAY IL",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SALARY ARBITRATION ELIGIBLE",
+     "ours": "SALARY ARBITRATION ELIGIBLE",
+     "agree": true
+    }
+   },
+   {
+    "name": "Caleb Thielbar",
+    "matched": true,
+    "mls": {
+     "azphil": "7+131",
+     "ours": "7+131",
+     "agree": true
+    },
+    "options": {
+     "azphil": "1",
+     "ours": "1",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "2027 MUTUAL OPTION",
+     "ours": "2027 MUTUAL OPTION",
+     "agree": true
+    }
+   },
+   {
+    "name": "Trent Thornton",
+    "matched": true,
+    "mls": {
+     "azphil": "5+148",
+     "ours": "5+148",
+     "agree": true
+    },
+    "options": {
+     "azphil": "0",
+     "ours": "0",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "N/A",
+     "ours": "N/A",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "FREE AGENT",
+     "ours": "FREE AGENT (XX-B) UNLESS SIGNED",
+     "agree": true
+    }
+   },
+   {
+    "name": "Jacob Webb",
+    "matched": true,
+    "mls": {
+     "azphil": "5+046",
+     "ours": "5+046",
+     "agree": true
+    },
+    "options": {
+     "azphil": "0",
+     "ours": "0",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "N/A",
+     "ours": "N/A",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "2027 CLUB OPTION",
+     "ours": "2027 CLUB OPTION",
+     "agree": true
+    }
+   },
+   {
+    "name": "Jordan Wicks",
+    "matched": true,
+    "mls": {
+     "azphil": "1+070",
+     "ours": "1+070",
+     "agree": true
+    },
+    "options": {
+     "azphil": "2",
+     "ours": "2",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "2",
+     "ours": "2",
+     "agree": true
+    },
+    "status": {
+     "azphil": "OPTIONED",
+     "ours": "OPTIONED",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "ours": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "agree": true
+    }
+   },
+   {
+    "name": "Ryan Zeferjahn",
+    "matched": true,
+    "mls": {
+     "azphil": "1+038",
+     "ours": "1+038",
+     "agree": true
+    },
+    "options": {
+     "azphil": "3",
+     "ours": "3",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "ours": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "agree": true
+    }
+   },
+   {
+    "name": "Miguel Amaya",
+    "matched": true,
+    "mls": {
+     "azphil": "2+130",
+     "ours": "2+130",
+     "agree": true
+    },
+    "options": {
+     "azphil": "0",
+     "ours": "0",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "N/A",
+     "ours": "N/A",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SALARY ARBITRATION ELIGIBLE",
+     "ours": "SALARY ARBITRATION ELIGIBLE",
+     "agree": true
+    }
+   },
+   {
+    "name": "Carson Kelly",
+    "matched": true,
+    "mls": {
+     "azphil": "7+161",
+     "ours": "7+161",
+     "agree": true
+    },
+    "options": {
+     "azphil": "1",
+     "ours": "1",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "2027 MUTUAL OPTION",
+     "ours": "2027 MUTUAL OPTION",
+     "agree": true
+    }
+   },
+   {
+    "name": "Gabriel Arias",
+    "matched": true,
+    "mls": {
+     "azphil": "2+124",
+     "ours": "2+124",
+     "agree": true
+    },
+    "options": {
+     "azphil": "0",
+     "ours": "0",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "N/A",
+     "ours": "N/A",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SALARY ARBITRATION ELIGIBLE",
+     "ours": "SALARY ARBITRATION ELIGIBLE",
+     "agree": true
+    }
+   },
+   {
+    "name": "Tyler Austin",
+    "matched": true,
+    "mls": {
+     "azphil": "2+151",
+     "ours": "2+151",
+     "agree": true
+    },
+    "options": {
+     "azphil": "0",
+     "ours": "0",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "N/A",
+     "ours": "N/A",
+     "agree": true
+    },
+    "status": {
+     "azphil": "60-DAY IL",
+     "ours": "60-DAY IL",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SALARY ARBITRATION ELIGIBLE OR FREE AGENT (PLAYER OPTION)",
+     "ours": "FREE AGENT",
+     "agree": false
+    }
+   },
+   {
+    "name": "Alex Bregman",
+    "matched": true,
+    "mls": {
+     "azphil": "9+070",
+     "ours": "9+070",
+     "agree": true
+    },
+    "options": {
+     "azphil": "3",
+     "ours": "3",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SIGNED THRU 2030",
+     "ours": "SIGNED THRU 2030",
+     "agree": true
+    }
+   },
+   {
+    "name": "Michael Busch",
+    "matched": true,
+    "mls": {
+     "azphil": "2+045",
+     "ours": "2+045",
+     "agree": true
+    },
+    "options": {
+     "azphil": "2",
+     "ours": "2",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SALARY ARBITRATION ELIGIBLE",
+     "ours": "SALARY ARBITRATION ELIGIBLE",
+     "agree": true
+    }
+   },
+   {
+    "name": "Nico Hoerner",
+    "matched": true,
+    "mls": {
+     "azphil": "6+014",
+     "ours": "6+014",
+     "agree": true
+    },
+    "options": {
+     "azphil": "2",
+     "ours": "2",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SIGNED THRU 2032",
+     "ours": "SIGNED THRU 2032",
+     "agree": true
+    }
+   },
+   {
+    "name": "BJ Murray Jr",
+    "matched": true,
+    "mls": {
+     "azphil": "0+000",
+     "ours": "0+000",
+     "agree": true
+    },
+    "options": {
+     "azphil": "3",
+     "ours": "3",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "ours": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "agree": true
+    }
+   },
+   {
+    "name": "Pedro Ramirez",
+    "matched": true,
+    "mls": {
+     "azphil": "0+000",
+     "ours": "0+000",
+     "agree": true
+    },
+    "options": {
+     "azphil": "3",
+     "ours": "3",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "ours": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "agree": true
+    }
+   },
+   {
+    "name": "Matt Shaw",
+    "matched": true,
+    "mls": {
+     "azphil": "0+162",
+     "ours": "0+162",
+     "agree": true
+    },
+    "options": {
+     "azphil": "3",
+     "ours": "2",
+     "agree": false
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "ours": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "agree": true
+    }
+   },
+   {
+    "name": "Dansby Swanson",
+    "matched": true,
+    "mls": {
+     "azphil": "9+047",
+     "ours": "9+047",
+     "agree": true
+    },
+    "options": {
+     "azphil": "3",
+     "ours": "3",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "10-DAY IL",
+     "agree": false
+    },
+    "contract": {
+     "azphil": "SIGNED THRU 2029",
+     "ours": "SIGNED THRU 2029",
+     "agree": true
+    }
+   },
+   {
+    "name": "James Triantos Jr",
+    "matched": true,
+    "mls": {
+     "azphil": "0+000",
+     "ours": "0+000",
+     "agree": true
+    },
+    "options": {
+     "azphil": "3",
+     "ours": "3",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "4",
+     "agree": false
+    },
+    "status": {
+     "azphil": "OPTIONED",
+     "ours": "OPTIONED",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "ours": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "agree": true
+    }
+   },
+   {
+    "name": "Kevin Alcantara",
+    "matched": true,
+    "mls": {
+     "azphil": "0+033",
+     "ours": "0+033",
+     "agree": true
+    },
+    "options": {
+     "azphil": "1",
+     "ours": "1",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "1",
+     "ours": "1",
+     "agree": true
+    },
+    "status": {
+     "azphil": "OPTIONED",
+     "ours": "OPTIONED",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "ours": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "agree": true
+    }
+   },
+   {
+    "name": "Michael Conforto",
+    "matched": true,
+    "mls": {
+     "azphil": "9+043",
+     "ours": "9+043",
+     "agree": true
+    },
+    "options": {
+     "azphil": "2",
+     "ours": "2",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "FREE AGENT",
+     "ours": "FREE AGENT",
+     "agree": true
+    }
+   },
+   {
+    "name": "Pete Crow-Armstrong",
+    "matched": true,
+    "mls": {
+     "azphil": "1+170",
+     "ours": "1+170",
+     "agree": true
+    },
+    "options": {
+     "azphil": "2",
+     "ours": "2",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "SIGNED THRU 2032",
+     "ours": "SIGNED THRU 2032",
+     "agree": true
+    }
+   },
+   {
+    "name": "Justin Dean",
+    "matched": true,
+    "mls": {
+     "azphil": "0+052",
+     "ours": "0+052",
+     "agree": true
+    },
+    "options": {
+     "azphil": "3",
+     "ours": "3",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "4",
+     "ours": "4",
+     "agree": true
+    },
+    "status": {
+     "azphil": "OPTIONED",
+     "ours": "OPTIONED",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "ours": "PRE-ARBITRATION / AUTO-RENEWAL",
+     "agree": true
+    }
+   },
+   {
+    "name": "Ian Happ",
+    "matched": true,
+    "mls": {
+     "azphil": "8+036",
+     "ours": "8+036",
+     "agree": true
+    },
+    "options": {
+     "azphil": "2",
+     "ours": "2",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "FREE AGENT",
+     "ours": "FREE AGENT",
+     "agree": true
+    }
+   },
+   {
+    "name": "Seiya Suzuki",
+    "matched": true,
+    "mls": {
+     "azphil": "4+000",
+     "ours": "4+000",
+     "agree": true
+    },
+    "options": {
+     "azphil": "3",
+     "ours": "3",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "5",
+     "ours": "5",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "FREE AGENT",
+     "ours": "FREE AGENT",
+     "agree": true
+    }
+   },
+   {
+    "name": "Tyrone Taylor",
+    "matched": true,
+    "mls": {
+     "azphil": "5+093",
+     "ours": "5+093",
+     "agree": true
+    },
+    "options": {
+     "azphil": "0",
+     "ours": "0",
+     "agree": true
+    },
+    "assignments": {
+     "azphil": "N/A",
+     "ours": "N/A",
+     "agree": true
+    },
+    "status": {
+     "azphil": "ACTIVE",
+     "ours": "ACTIVE",
+     "agree": true
+    },
+    "contract": {
+     "azphil": "FREE AGENT",
+     "ours": "FREE AGENT",
+     "agree": true
+    }
+   }
+  ]
+ },
+ "fangraphs": {
+  "source": "FanGraphs RosterResource options (current snapshot)",
+  "n": 1010,
+  "exact": 977,
+  "pct": 96.7,
+  "confusion": {
+   "3->3": 410,
+   "1->1": 210,
+   "0->0": 111,
+   "2->2": 246,
+   "0->1": 3,
+   "2->1": 11,
+   "2->3": 3,
+   "1->2": 8,
+   "3->2": 8
+  },
+  "disagreements": [
+   {
+    "name": "Tayler Saucedo",
+    "team": "LAA",
+    "fangraphs": 0,
+    "ours": 1,
+    "burned": [
+     "2021",
+     "2022",
+     "2023",
+     "2025",
+     "2026"
+    ]
+   },
+   {
+    "name": "Sebastian Rivero",
+    "team": "LAA",
+    "fangraphs": 2,
+    "ours": 1,
+    "burned": [
+     "2021",
+     "2022"
+    ]
+   },
+   {
+    "name": "Cade Povich",
+    "team": "BAL",
+    "fangraphs": 2,
+    "ours": 3,
+    "burned": [
+     "2024",
+     "2025",
+     "2026"
+    ]
+   },
+   {
+    "name": "Codi Heuer",
+    "team": "BAL",
+    "fangraphs": 1,
+    "ours": 2,
+    "burned": [
+     "2025",
+     "2026"
+    ]
+   },
+   {
+    "name": "Eli White",
+    "team": "BOS",
+    "fangraphs": 0,
+    "ours": 1,
+    "burned": [
+     "2021",
+     "2023",
+     "2024"
+    ]
+   },
+   {
+    "name": "Andruw Monasterio",
+    "team": "BOS",
+    "fangraphs": 3,
+    "ours": 2,
+    "burned": [
+     "2024",
+     "2025"
+    ]
+   },
+   {
+    "name": "Daniel Palencia",
+    "team": "CHC",
+    "fangraphs": 2,
+    "ours": 1,
+    "burned": [
+     "2023",
+     "2024",
+     "2025"
+    ]
+   },
+   {
+    "name": "Porter Hodge",
+    "team": "CHC",
+    "fangraphs": 2,
+    "ours": 1,
+    "burned": [
+     "2024",
+     "2025"
+    ]
+   },
+   {
+    "name": "Noelvi Marte",
+    "team": "CIN",
+    "fangraphs": 2,
+    "ours": 1,
+    "burned": [
+     "2023",
+     "2025",
+     "2026"
+    ]
+   },
+   {
+    "name": "Logan T. Allen",
+    "team": "CLE",
+    "fangraphs": 1,
+    "ours": 2,
+    "burned": [
+     "2023",
+     "2024",
+     "2026"
+    ]
+   },
+   {
+    "name": "Enmanuel De Jesus",
+    "team": "DET",
+    "fangraphs": 3,
+    "ours": 2,
+    "burned": [
+     "2023",
+     "2026"
+    ]
+   },
+   {
+    "name": "Steven Cruz",
+    "team": "KC",
+    "fangraphs": 2,
+    "ours": 1,
+    "burned": [
+     "2024",
+     "2025",
+     "2026"
+    ]
+   },
+   {
+    "name": "Connor Thomas",
+    "team": "KC",
+    "fangraphs": 3,
+    "ours": 2,
+    "burned": [
+     "2023",
+     "2026"
+    ]
+   },
+   {
+    "name": "Jose Cuas",
+    "team": "KC",
+    "fangraphs": 1,
+    "ours": 2,
+    "burned": [
+     "2022",
+     "2023",
+     "2024",
+     "2026"
+    ]
+   },
+   {
+    "name": "Ben Casparius",
+    "team": "LAD",
+    "fangraphs": 2,
+    "ours": 1,
+    "burned": [
+     "2024",
+     "2025"
+    ]
+   },
+   {
+    "name": "Bobby Miller",
+    "team": "LAD",
+    "fangraphs": 2,
+    "ours": 1,
+    "burned": [
+     "2024",
+     "2025",
+     "2026"
+    ]
+   },
+   {
+    "name": "Mitchell Parker",
+    "team": "WSH",
+    "fangraphs": 3,
+    "ours": 2,
+    "burned": [
+     "2024",
+     "2026"
+    ]
+   },
+   {
+    "name": "Cole Henry",
+    "team": "WSH",
+    "fangraphs": 2,
+    "ours": 1,
+    "burned": [
+     "2024",
+     "2025",
+     "2026"
+    ]
+   },
+   {
+    "name": "Daniel Duarte",
+    "team": "NYM",
+    "fangraphs": 1,
+    "ours": 2,
+    "burned": [
+     "2022",
+     "2023",
+     "2026"
+    ]
+   },
+   {
+    "name": "Henry Bolte",
+    "team": "ATH",
+    "fangraphs": 2,
+    "ours": 3,
+    "burned": []
+   },
+   {
+    "name": "J.T. Ginn",
+    "team": "ATH",
+    "fangraphs": 3,
+    "ours": 2,
+    "burned": [
+     "2025"
+    ]
+   },
+   {
+    "name": "Oneil Cruz",
+    "team": "PIT",
+    "fangraphs": 0,
+    "ours": 1,
+    "burned": [
+     "2020",
+     "2021",
+     "2022"
+    ]
+   },
+   {
+    "name": "Henry Davis",
+    "team": "PIT",
+    "fangraphs": 2,
+    "ours": 1,
+    "burned": [
+     "2024",
+     "2025"
+    ]
+   },
+   {
+    "name": "Bryan Hoeing",
+    "team": "SD",
+    "fangraphs": 1,
+    "ours": 2,
+    "burned": [
+     "2022",
+     "2023",
+     "2025"
+    ]
+   },
+   {
+    "name": "Dominic Canzone",
+    "team": "SEA",
+    "fangraphs": 2,
+    "ours": 1,
+    "burned": [
+     "2024",
+     "2025"
+    ]
+   },
+   {
+    "name": "Logan Evans",
+    "team": "SEA",
+    "fangraphs": 3,
+    "ours": 2,
+    "burned": [
+     "2025"
+    ]
+   },
+   {
+    "name": "Patrick Wisdom",
+    "team": "SEA",
+    "fangraphs": 3,
+    "ours": 2,
+    "burned": [
+     "2018",
+     "2019",
+     "2020",
+     "2026"
+    ]
+   },
+   {
+    "name": "Cam Booser",
+    "team": "TB",
+    "fangraphs": 2,
+    "ours": 1,
+    "burned": [
+     "2024",
+     "2025",
+     "2026"
+    ]
+   },
+   {
+    "name": "Brendon Little",
+    "team": "TOR",
+    "fangraphs": 1,
+    "ours": 2,
+    "burned": [
+     "2024",
+     "2026"
+    ]
+   },
+   {
+    "name": "Ky Bush",
+    "team": "CWS",
+    "fangraphs": 2,
+    "ours": 3,
+    "burned": [
+     "2024"
+    ]
+   },
+   {
+    "name": "Huascar Brazoban",
+    "team": "CWS",
+    "fangraphs": 1,
+    "ours": 2,
+    "burned": [
+     "2023",
+     "2024",
+     "2025"
+    ]
+   },
+   {
+    "name": "Logan Driscoll",
+    "team": "MIA",
+    "fangraphs": 3,
+    "ours": 2,
+    "burned": [
+     "2025",
+     "2026"
+    ]
+   },
+   {
+    "name": "Brice Turang",
+    "team": "MIL",
+    "fangraphs": 1,
+    "ours": 2,
+    "burned": [
+     "2023"
+    ]
+   }
+  ]
+ },
+ "transactions": {
+  "years": {
+   "2015": {
+    "designated": {
+     "n": 388,
+     "expected": 329,
+     "ok": true
+    },
+    "traded": {
+     "n": 432,
+     "expected": 325,
+     "ok": true
+    },
+    "optioned": {
+     "n": 1215,
+     "expected": 1121,
+     "ok": true
+    },
+    "outrighted": {
+     "n": 335,
+     "expected": 289,
+     "ok": true
+    },
+    "released": {
+     "n": 186,
+     "expected": 183,
+     "ok": true
+    },
+    "selected": {
+     "n": 497,
+     "expected": 454,
+     "ok": true
+    }
+   },
+   "2016": {
+    "designated": {
+     "n": 377,
+     "expected": 363,
+     "ok": true
+    },
+    "traded": {
+     "n": 344,
+     "expected": 362,
+     "ok": true
+    },
+    "optioned": {
+     "n": 1257,
+     "expected": 1178,
+     "ok": true
+    },
+    "outrighted": {
+     "n": 331,
+     "expected": 308,
+     "ok": true
+    },
+    "released": {
+     "n": 225,
+     "expected": 196,
+     "ok": true
+    },
+    "selected": {
+     "n": 492,
+     "expected": 470,
+     "ok": true
+    }
+   },
+   "2017": {
+    "designated": {
+     "n": 346,
+     "expected": 378,
+     "ok": true
+    },
+    "traded": {
+     "n": 376,
+     "expected": 383,
+     "ok": true
+    },
+    "optioned": {
+     "n": 1341,
+     "expected": 1223,
+     "ok": true
+    },
+    "outrighted": {
+     "n": 321,
+     "expected": 329,
+     "ok": true
+    },
+    "released": {
+     "n": 95,
+     "expected": 214,
+     "ok": true
+    },
+    "selected": {
+     "n": 444,
+     "expected": 484,
+     "ok": true
+    }
+   },
+   "2018": {
+    "designated": {
+     "n": 328,
+     "expected": 370,
+     "ok": true
+    },
+    "traded": {
+     "n": 462,
+     "expected": 384,
+     "ok": true
+    },
+    "optioned": {
+     "n": 1478,
+     "expected": 1271,
+     "ok": true
+    },
+    "outrighted": {
+     "n": 308,
+     "expected": 329,
+     "ok": true
+    },
+    "released": {
+     "n": 125,
+     "expected": 169,
+     "ok": true
+    },
+    "selected": {
+     "n": 458,
+     "expected": 478,
+     "ok": true
+    }
+   },
+   "2019": {
+    "designated": {
+     "n": 406,
+     "expected": 350,
+     "ok": true
+    },
+    "traded": {
+     "n": 332,
+     "expected": 394,
+     "ok": true
+    },
+    "optioned": {
+     "n": 1531,
+     "expected": 1359,
+     "ok": true
+    },
+    "outrighted": {
+     "n": 298,
+     "expected": 320,
+     "ok": true
+    },
+    "released": {
+     "n": 167,
+     "expected": 148,
+     "ok": true
+    },
+    "selected": {
+     "n": 532,
+     "expected": 465,
+     "ok": true
+    }
+   },
+   "2020": {
+    "designated": {
+     "n": 269,
+     "expected": 360,
+     "ok": true
+    },
+    "traded": {
+     "n": 225,
+     "expected": 390,
+     "ok": true
+    },
+    "optioned": {
+     "n": 961,
+     "expected": 1450,
+     "ok": true
+    },
+    "outrighted": {
+     "n": 247,
+     "expected": 309,
+     "ok": true
+    },
+    "released": {
+     "n": 141,
+     "expected": 129,
+     "ok": true
+    },
+    "selected": {
+     "n": 454,
+     "expected": 478,
+     "ok": true
+    }
+   },
+   "2021": {
+    "designated": {
+     "n": 521,
+     "expected": 367,
+     "ok": true
+    },
+    "traded": {
+     "n": 380,
+     "expected": 397,
+     "ok": true
+    },
+    "optioned": {
+     "n": 1858,
+     "expected": 1504,
+     "ok": true
+    },
+    "outrighted": {
+     "n": 429,
+     "expected": 303,
+     "ok": true
+    },
+    "released": {
+     "n": 137,
+     "expected": 146,
+     "ok": true
+    },
+    "selected": {
+     "n": 758,
+     "expected": 495,
+     "ok": false
+    }
+   },
+   "2022": {
+    "designated": {
+     "n": 595,
+     "expected": 464,
+     "ok": true
+    },
+    "traded": {
+     "n": 412,
+     "expected": 356,
+     "ok": true
+    },
+    "optioned": {
+     "n": 1665,
+     "expected": 1694,
+     "ok": true
+    },
+    "outrighted": {
+     "n": 415,
+     "expected": 364,
+     "ok": true
+    },
+    "released": {
+     "n": 107,
+     "expected": 152,
+     "ok": true
+    },
+    "selected": {
+     "n": 641,
+     "expected": 645,
+     "ok": true
+    }
+   },
+   "2023": {
+    "designated": {
+     "n": 452,
+     "expected": 558,
+     "ok": true
+    },
+    "traded": {
+     "n": 376,
+     "expected": 396,
+     "ok": true
+    },
+    "optioned": {
+     "n": 1550,
+     "expected": 1762,
+     "ok": true
+    },
+    "outrighted": {
+     "n": 375,
+     "expected": 422,
+     "ok": true
+    },
+    "released": {
+     "n": 120,
+     "expected": 122,
+     "ok": true
+    },
+    "selected": {
+     "n": 533,
+     "expected": 700,
+     "ok": true
+    }
+   },
+   "2024": {
+    "designated": {
+     "n": 580,
+     "expected": 523,
+     "ok": true
+    },
+    "traded": {
+     "n": 453,
+     "expected": 389,
+     "ok": true
+    },
+    "optioned": {
+     "n": 1502,
+     "expected": 1691,
+     "ok": true
+    },
+    "outrighted": {
+     "n": 372,
+     "expected": 406,
+     "ok": true
+    },
+    "released": {
+     "n": 117,
+     "expected": 121,
+     "ok": true
+    },
+    "selected": {
+     "n": 525,
+     "expected": 644,
+     "ok": true
+    }
+   },
+   "2025": {
+    "designated": {
+     "n": 614,
+     "expected": 542,
+     "ok": true
+    },
+    "traded": {
+     "n": 421,
+     "expected": 414,
+     "ok": true
+    },
+    "optioned": {
+     "n": 1514,
+     "expected": 1572,
+     "ok": true
+    },
+    "outrighted": {
+     "n": 400,
+     "expected": 387,
+     "ok": true
+    },
+    "released": {
+     "n": 125,
+     "expected": 115,
+     "ok": true
+    },
+    "selected": {
+     "n": 556,
+     "expected": 566,
+     "ok": true
+    }
+   },
+   "2026": {
+    "designated": {
+     "n": 532,
+     "expected": 377,
+     "ok": true
+    },
+    "traded": {
+     "n": 410,
+     "expected": 286,
+     "ok": true
+    },
+    "optioned": {
+     "n": 1411,
+     "expected": 1045,
+     "ok": true
+    },
+    "outrighted": {
+     "n": 284,
+     "expected": 263,
+     "ok": true
+    },
+    "released": {
+     "n": 94,
+     "expected": 83,
+     "ok": true
+    },
+    "selected": {
+     "n": 432,
+     "expected": 370,
+     "ok": true
+    }
+   }
+  },
+  "ok": true
+ },
+ "service_time_note": "Service time through the prior season is taken from FanGraphs RosterResource. Our own reconstruction from Stats API roster stints matched FanGraphs exactly for only ~30% of players (52% within 10 days) because stint flags are unreliable before ~2022 and the 2021 option log has gaps, so it is not used for display yet."
+}
