@@ -38,6 +38,15 @@ def norm_contract(s: str) -> str:
 
 def vs_azphil(players: list[dict]) -> dict:
     files = sorted(glob.glob(str(C.VALIDATION / "azphil_cubs_*.csv")))
+    if not files:
+        # No fresh snapshot (the page blocks some networks): carry the last committed comparison forward.
+        prev = C.VALIDATION / "validation.json"
+        if prev.exists():
+            old = json.loads(prev.read_text())["azphil"]
+            old["stale"] = True
+            old["note"] = "Arizona Phil's page could not be fetched on this run; comparison carried forward from the last successful one."
+            return old
+        raise SystemExit("no Arizona Phil snapshot and no previous validation.json")
     az = list(csv.DictReader(open(files[-1])))
     updated = (C.VALIDATION / "azphil_latest.txt").read_text().splitlines()[1]
     ours = {key(p["name"]): p for p in players if p["team"] == "CHC" and p["on_forty"]}
@@ -63,7 +72,7 @@ def vs_azphil(players: list[dict]) -> dict:
         for k in cols:
             cols[k] += agree[k]
         rows.append({"name": r["name"], "matched": True, **{k: {"azphil": v[0], "ours": v[1], "agree": agree[k]} for k, v in cmp.items()}})
-    return {"source": "thecubreporter.com/cubs-40-man-roster", "page_updated": updated, "n_rows": len(az), "n_matched": n,
+    return {"source": "thecubreporter.com/cubs-40-man-roster", "page_updated": updated, "compared_on": dt.date.today().isoformat(), "stale": False, "n_rows": len(az), "n_matched": n,
             "agreement": {k: {"n": v, "pct": round(100 * v / n, 1)} for k, v in cols.items()}, "rows": rows}
 
 

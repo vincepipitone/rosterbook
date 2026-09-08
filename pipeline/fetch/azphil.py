@@ -13,6 +13,7 @@ import re
 import sys
 
 import requests
+from curl_cffi import requests as crequests
 
 from pipeline import config as C
 
@@ -50,7 +51,11 @@ def parse(text: str) -> tuple[str, list[dict]]:
 
 def fetch() -> None:
     r = requests.get(URL, headers={"User-Agent": UA}, timeout=60)
-    r.raise_for_status()
+    if r.status_code != 200:
+        # Cloudflare blocks some ranges (GitHub runners); a Chrome TLS fingerprint usually passes
+        r = crequests.get(URL, impersonate="chrome", timeout=60)
+    if r.status_code != 200:
+        raise SystemExit(f"thecubreporter.com returned {r.status_code}; keeping last snapshot")
     updated, rows = parse(r.text)
     C.VALIDATION.mkdir(parents=True, exist_ok=True)
     out = C.VALIDATION / f"azphil_cubs_{dt.date.today().isoformat()}.csv"

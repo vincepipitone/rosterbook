@@ -24,7 +24,7 @@ export default async function ValidationPage() {
 
       <section className="mt-8 max-w-3xl">
         <h2 className="text-xl font-semibold">Against Arizona Phil&apos;s Cubs page</h2>
-        <p className="mt-1 text-sm text-ink-soft">Page dated {az.page_updated}; {az.n_matched} of {az.n_rows} players matched by name.</p>
+        <p className="mt-1 text-sm text-ink-soft">Page dated {az.page_updated}; {az.n_matched} of {az.n_rows} players matched by name.{az.stale ? ` ${az.note}` : ""}</p>
         <table className="board mt-3">
           <thead><tr><th>Column</th><th className="num">Agree</th><th className="num">Share</th></tr></thead>
           <tbody>
