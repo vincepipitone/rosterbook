@@ -5,7 +5,7 @@ season, service time, who can refuse an assignment, who is exposed to the Rule 5
 plain-English reason for each, derived from the public transaction log and checked nightly against
 the best human-maintained sources.
 
-Live: https://rosterbook.vercel.app (Vercel builds `main`).
+Deploy: import the repo at vercel.com/new (framework Next.js, no env vars); Vercel builds `main` on every push, including the nightly data commit.
 
 ## Why
 
