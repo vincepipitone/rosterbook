@@ -135,7 +135,7 @@ def load_people() -> dict[int, dict]:
 
 def fetch_people(ids: list[int]) -> None:
     store = load_people()
-    todo = sorted(set(ids) - set(store))
+    todo = sorted(i for i in set(ids) - set(store) if i and i > 0)
     print(f"{len(todo)} people to fetch ({len(store)} cached)", file=sys.stderr)
     for k in range(0, len(todo), 100):
         chunk = todo[k:k + 100]
@@ -161,6 +161,7 @@ def fetch_people(ids: list[int]) -> None:
 def refresh_people(ids: list[int]) -> None:
     """Re-fetch rosterEntries for the players we display (current 40-man pool), since stints change."""
     store = load_people()
+    ids = [i for i in ids if i and i > 0]
     for k in range(0, len(ids), 100):
         chunk = ids[k:k + 100]
         data = get("/people", personIds=",".join(map(str, chunk)), hydrate="rosterEntries")
