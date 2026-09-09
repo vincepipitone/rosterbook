@@ -32,6 +32,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return { title: p ? `${p.name} roster status` : "Player" };
 }
 
+function ord(n: number): string {
+  const s = ["th", "st", "nd", "rd"], v = n % 100;
+  return s[(v - 20) % 10] || s[v] || s[0];
+}
+
 const TYPE_LABEL: Record<string, string> = {
   optioned: "Optioned", recalled: "Recalled", selected: "Contract selected", designated: "Designated for assignment",
   outrighted: "Outrighted", claimed: "Claimed off waivers", released: "Released", traded: "Traded", rule5_selected: "Rule 5 pick",
@@ -105,6 +110,42 @@ export default async function PlayerPage({ params }: { params: Promise<{ id: str
             Trained on every 40-man roster snapshot since 2011 and what happened in the following 90 days; it sees roster status, options,
             service, history and last season&apos;s line, not this season&apos;s performance or the club&apos;s intentions.{" "}
             <Link href="/model" className="underline">How well it does.</Link>
+          </p>
+        </section>
+      ) : null}
+
+      {p.fit ? (
+        <section className="mt-8 max-w-3xl">
+          <h2 className="text-xl font-semibold">Is there a job for him next year?</h2>
+          <p className="mt-2 text-[15px] leading-snug">
+            {p.team} returns {p.fit.returners} {p.fit.role} on the 40-man once {p.fit.departing ? `${p.fit.departing} free agent${p.fit.departing === 1 ? "" : "s"} leave${p.fit.departing === 1 ? "s" : ""}` : "nobody leaves"};
+            about {p.fit.jobs} {p.fit.role} jobs survive a normal winter. By his own recent record he ranks {p.fit.rank}{ord(p.fit.rank)} among the returners
+            ({p.fit.proj.toFixed(1)} WAR against a bar of {p.fit.bar.toFixed(1)}), which the calibrated model turns into{" "}
+            <span className="font-semibold">{pct(p.fit.p_kept)} kept</span> through the tender deadline.
+            {p.fit.sys.has_proj ? (
+              <> Ranked by ZiPS and Steamer instead, which credit his longer track record, he is {p.fit.sys.rank}{ord(p.fit.sys.rank)} ({p.fit.sys.proj.toFixed(1)} WAR, bar {p.fit.sys.bar.toFixed(1)}), worth <span className="font-semibold">{pct(p.fit.sys.p_kept)} kept</span> on the same model.</>
+            ) : null}
+          </p>
+          <div className="mt-3 grid gap-6 sm:grid-cols-2">
+            {([["By recent record", p.fit.returner_list, p.fit.rank], ["By ZiPS / Steamer", p.fit.sys.returner_list, p.fit.sys.rank]] as [string, { id: number; name: string | null; proj: number }[], number][]).map(([title, list, rank]) => (
+              <table key={title} className="board">
+                <thead><tr><th>{title}: returning {p.fit!.role}</th><th className="num">Proj. WAR</th></tr></thead>
+                <tbody>
+                  {list.map((r, i) => (
+                    <tr key={r.id} className={r.id === p.id ? "font-semibold" : i + 1 > p.fit!.jobs ? "text-ink-soft" : ""}>
+                      <td>{i + 1}. {r.name ?? r.id}{i + 1 === p.fit!.jobs ? <span className="ml-2 text-[12px] font-normal text-ink-soft">last job</span> : null}</td>
+                      <td className="num">{r.proj.toFixed(1)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ))}
+          </div>
+          <p className="mt-2 text-sm text-ink-soft">
+            Departing free agents are excluded; players on club, mutual or player options are counted as returning. The kept probability is
+            calibrated on every September since 2012 using the recent-record projection; the ZiPS/Steamer reading uses the same model with a
+            different ranking, so treat it as a second opinion rather than a calibrated number. Salary enters once arbitration projections
+            publish in October.
           </p>
         </section>
       ) : null}

@@ -112,6 +112,29 @@ def main() -> pd.DataFrame:
                 v = C.parse_mls(str(r["servicetime"]))
                 if v is not None and (r["mlbamid"], y) not in fg_mls:
                     fg_mls[(r["mlbamid"], y)] = v
+    # departing free agents per (team, season): declared free agency within 10 days after the World Series
+    # (contract expiry, not a non-tender; used as the "leaving" set for positional supply features)
+    departing: dict[tuple[int, int], set] = defaultdict(set)
+    for y, s in seasons.items():
+        ws = C.d(s.get("postSeasonEndDate"))
+        if not ws:
+            continue
+        fa = tx[(tx["type"] == "declared_fa") & (tx["date"] >= ws - dt.timedelta(days=3)) & (tx["date"] <= ws + dt.timedelta(days=10))]
+        for r in fa.itertuples():
+            team = r.from_team if not pd.isna(r.from_team) else r.to_team
+            if not pd.isna(team):
+                departing[(int(team), y)].add(int(r.mlbam_id))
+
+    def fine_role(pid, pos, season, date):
+        """SP / RP / C / IF / OF; pitchers split by games-started share (this season from Sept, else last season)."""
+        g = pos_group(pos)
+        if g != 0:
+            return ("C", "IF", "OF")[g - 1]
+        for y in ((season, season - 1) if date >= dt.date(season, 9, 1) else (season - 1, season - 2)):
+            w = war.get((pid, y))
+            if w and w.get("g"):
+                return "SP" if (w.get("gs") or 0) / w["g"] >= 0.5 else "RP"
+        return "RP"
     # per-player transaction arrays and option intervals
     ptx = {pid: g for pid, g in tx.groupby("mlbam_id")}
     opt_cache: dict[int, list] = {}
@@ -138,6 +161,15 @@ def main() -> pd.DataFrame:
         grp_war_list = defaultdict(list)
         for r in roster:
             grp_war_list[pos_group(r.get("pos"))].append(fwar(r["id"], season - 1) or 0.0)
+        roles = {r["id"]: fine_role(r["id"], r.get("pos"), season, date) for r in roster}
+        dep = departing.get((team_id, season), set())
+        role_n, role_dep, role_vet_n = defaultdict(int), defaultdict(int), defaultdict(int)
+        for r in roster:
+            role_n[roles[r["id"]]] += 1
+            if r["id"] in dep:
+                role_dep[roles[r["id"]]] += 1
+            dbt = C.d((people.get(r["id"]) or {}).get("mlbDebutDate"))
+            role_vet_n[roles[r["id"]]] += int(bool(dbt) and (date - dbt).days >= 6 * 365)
         grp_n, grp_opt, grp_vet = defaultdict(int), defaultdict(int), defaultdict(int)
         for r in roster:
             gk = pos_group(r.get("pos"))
@@ -162,6 +194,9 @@ def main() -> pd.DataFrame:
                         n40=n40, n60=n60, in_season=int(od <= date <= end), days_to_end=(end - date).days,
                         grp_n=grp_n[pos_group(r.get("pos"))], grp_optioned=grp_opt[pos_group(r.get("pos"))], grp_vets=grp_vet[pos_group(r.get("pos"))],
                         team_pct=team_pct, team_rd=team_rd,
+                        role=("SP", "RP", "C", "IF", "OF").index(roles[r["id"]]), role_n=role_n[roles[r["id"]]],
+                        role_departing=role_dep[roles[r["id"]]], role_net=role_n[roles[r["id"]]] - role_dep[roles[r["id"]]],
+                        role_vets=role_vet_n[roles[r["id"]]], sp_n=role_n["SP"], sp_departing=role_dep["SP"],
                         day_of_year=date.timetuple().tm_yday)
             if g is not None and len(g):
                 before = g[g["date"] < date]

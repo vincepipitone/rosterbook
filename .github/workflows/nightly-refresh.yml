@@ -55,6 +55,7 @@ jobs:
           python -m pipeline.validate.run
           python -m pipeline.model.build_panel
           if [ "$(date -u +%u)" = "7" ]; then python -m pipeline.model.train; else python -m pipeline.model.train --no-eval; fi
+          python -m pipeline.model.roster_fit
           python -m pipeline.export.export_site_json
           python - <<'EOF'
           import json, sys

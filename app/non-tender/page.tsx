@@ -27,7 +27,9 @@ export default async function NonTenderPage() {
           non-tenders and November outrights alike.
         </p>
         <p className="prose-narrow mt-2 text-sm text-ink-soft">
-          The two risk columns are the model&apos;s: designated or outrighted, and released or non-tendered, within 90 days. Historically
+          Sorted by the roster-aware model: for each player, the club&apos;s returning depth at his role next year minus departing free
+          agents, ranked by projection, and where he lands in it (rank shown; hover for the ZiPS/Steamer reading). The two risk columns
+          after it are the general model&apos;s: designated or outrighted, and released or non-tendered, within 90 days. Historically
           most arbitration-eligible cuts happen as November outrights rather than at the deadline itself, so read them together. The model
           learns from roster mechanics, history, this season&apos;s line and positional depth; it does not see projections or dollars.
           Those sit alongside as context: ZiPS projected WAR, this year&apos;s WAR, how he was acquired (a club that just traded for a
@@ -41,7 +43,7 @@ export default async function NonTenderPage() {
             <tr>
               <th>Team</th><th>Player</th><th className="num">Age</th><th className="num">Service thru {season - 1}</th>
               <th className="num">Arb year</th><th className="num">{season} salary</th>
-              <th className="num">DFA / outright</th><th className="num">Non-tender</th>
+              <th className="num">Kept, roster-aware</th><th className="num">DFA / outright</th><th className="num">Non-tender</th>
               <th className="num">ZiPS WAR</th><th className="num">{season} WAR</th><th>Acquired</th><th>Same-position FAs leaving</th>
               <th>Status</th><th>Rights</th>
             </tr>
@@ -55,6 +57,9 @@ export default async function NonTenderPage() {
                 <td className="num">{p.mls_prior ?? "n/a"}{p.super_two ? <span className="stamp stamp-amber ml-2">S2</span> : null}</td>
                 <td className="num">{p.arb_year ?? ""}</td>
                 <td className="num">{money(p.salary_2026)}</td>
+                <td className={`num whitespace-nowrap ${(p.fit?.p_kept ?? 1) < 0.5 ? "font-semibold text-red" : (p.fit?.p_kept ?? 1) < 0.75 ? "text-amber" : ""}`} title={p.fit ? `${p.fit.rank} of ${p.fit.returners} returning ${p.fit.role} by recent record; ${p.fit.sys.rank} by ZiPS/Steamer (${pct(p.fit.sys.p_kept)})` : ""}>
+                  {p.fit ? <>{pct(p.fit.p_kept)}<span className="text-ink-soft"> · {p.fit.rank}/{p.fit.returners} {p.fit.role}</span></> : ""}
+                </td>
                 <td className={`num ${(p.model?.p_designated ?? 0) >= 0.3 ? "font-semibold text-red" : (p.model?.p_designated ?? 0) >= 0.15 ? "text-amber" : ""}`}>{p.model ? pct(p.model.p_designated) : ""}</td>
                 <td className={`num ${(p.model?.p_released ?? 0) >= 0.1 ? "font-semibold text-red" : (p.model?.p_released ?? 0) >= 0.05 ? "text-amber" : ""}`}>{p.model ? pct(p.model.p_released) : ""}</td>
                 <td className="num">{p.proj?.zips?.war != null ? p.proj.zips.war.toFixed(1) : ""}</td>

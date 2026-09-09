@@ -15,12 +15,16 @@ export type ModelOut = {
   reasons_designated: ModelReason[]; reasons_optioned: ModelReason[];
 } | null;
 
+export type FitView = { p_kept: number; rank: number; bar: number; proj: number; margin: number; returner_list: { id: number; name: string | null; proj: number }[] };
+export type RosterFit = FitView & { role: string; returners: number; departing: number; jobs: number; sys: FitView & { has_proj: boolean } };
+
 export type PlayerSummary = {
   id: number;
   model: ModelOut;
   proj: { zips?: { war: number | null; pa: number | null; ip: number | null }; steamer?: { war: number | null; pa: number | null; ip: number | null } } | null;
   war_now: number | null;
   context: { group: string; same_group_on_forty: number; same_group_leaving: string[] } | null;
+  fit: RosterFit | null;
   name: string;
   team: string;
   pos: string | null;

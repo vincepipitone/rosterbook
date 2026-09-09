@@ -84,5 +84,11 @@ option risk), each player page, and `/non-tender` (arbitration-eligible players 
 through the tender deadline, with ZiPS projected WAR, this year's WAR, acquisition and the club's
 departing same-position free agents shown as context the model does not weigh).
 
+`pipeline/model/roster_fit.py` is the roster-aware tender model: for each player it rebuilds the
+club's returning depth at his role (departing free agents removed), ranks it by a Marcel-style WAR
+projection, and predicts "kept through the tender deadline" from his rank, the last-job bar and his
+margin (held-out log loss 0.239 to 0.227, AUC .904 to .916 over his own features alone). Player
+pages show the returner list under both the recent-record projection and ZiPS/Steamer.
+
 Also on each player page: post-season eligibility as it stands (Major League Rule 40 mechanics)
 and what an option, DFA/outright, release, trade or the offseason would mean for him.

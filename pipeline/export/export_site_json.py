@@ -14,7 +14,7 @@ from pipeline.fetch.statsapi import load
 from pipeline.rules.catalog import CBA_PDF, CBA_SOURCE_URL, CBA_TITLE, RULES
 
 MODEL_KEYS = ["p_none", "p_designated", "p_optioned", "p_traded", "p_released"]
-SUMMARY_KEYS = ["model", "proj", "war_now", "context"] + ["id", "name", "team", "pos", "bats", "throws", "age", "on_forty", "roster_status", "status_code", "on_option",
+SUMMARY_KEYS = ["model", "proj", "war_now", "context", "fit"] + ["id", "name", "team", "pos", "bats", "throws", "age", "on_forty", "roster_status", "status_code", "on_option",
                 "il", "injury", "mls_prior", "mls_prior_days", "mls_now", "mls_this_season_days", "mls_end_proj", "options_left",
                 "options_left_source", "fangraphs_options", "burning_this_season", "option_days_this_season",
                 "assignments_used", "assignments_available", "prior_outrights", "prior_dfa", "acquired", "acquired_code",
@@ -46,10 +46,22 @@ def attach_model(players: list[dict]) -> dict | None:
     return m
 
 
+def attach_fit(players: list[dict]) -> dict | None:
+    p = C.PROCESSED / "model" / "roster_fit.json.gz"
+    if not p.exists():
+        return None
+    rf = load(p)
+    live = {int(k): v for k, v in rf["live"].items()}
+    for pl in players:
+        pl["fit"] = live.get(pl["id"])
+    return rf
+
+
 def main():
     data = load(C.PROCESSED / "players.json.gz")
     meta, players = data["meta"], data["players"]
     model = attach_model(players)
+    fit = attach_fit(players)
     today = dt.date.today(); season = today.year
     seasons = C.load_seasons(); dl = C.DEADLINES.get(season, {})
     ws_end = C.d(seasons[season]["postSeasonEndDate"])
@@ -96,7 +108,8 @@ def main():
     if model:
         abl = C.PROCESSED / "model" / "ablation.json"
         write(out / "model.json", {"meta": model["meta"], "report": model["report"],
-                                   "ablation": json.loads(abl.read_text()) if abl.exists() else None})
+                                   "ablation": json.loads(abl.read_text()) if abl.exists() else None,
+                                   "roster_fit": fit["report"] if fit else None})
     # non-tender watch: arbitration-eligible players on a 40-man, ranked by the model's cut risk
     nt = []
     for p in players:
@@ -104,7 +117,7 @@ def main():
         if p["on_forty"] and cs.startswith("SALARY ARBITRATION"):
             c = p.get("contract_full") or {}
             nt.append({**slim(p), "arb_year": c.get("arb_year"), "salary_2026": c.get("salary_now"), "super_two": "SUPER TWO" in cs})
-    nt.sort(key=lambda p: -((p.get("model") or {}).get("p_cut") or 0))
+    nt.sort(key=lambda p: ((p.get("fit") or {}).get("p_kept") if p.get("fit") else 1.0, -((p.get("model") or {}).get("p_cut") or 0)))
     write(out / "nontender.json", {"meta": meta, "deadlines": deadlines, "players": nt})
     print(f"{len(teams)} teams, {len(ooo)} out of options, {len(r5)} Rule 5 exposed -> {out}", file=sys.stderr)
 

@@ -11,7 +11,7 @@ const ABL: Record<string, string> = {
 const LABEL: Record<string, string> = { none: "Stays put", designated: "Designated", optioned: "Optioned", traded: "Traded", released: "Released / non-tendered" };
 
 export default async function ModelPage() {
-  const { meta, report, ablation } = await loadModel();
+  const { meta, report, ablation, roster_fit } = await loadModel();
   const seasons = Object.entries(report.seasons as Record<string, { n: number; logloss: number; logloss_base: number; auc: Record<string, number | null> }>);
   const pooled = report.pooled;
   return (
@@ -74,6 +74,31 @@ export default async function ModelPage() {
           ))}
         </div>
       </section>
+
+      {roster_fit ? (
+        <section className="mt-8 max-w-3xl">
+          <h2 className="text-xl font-semibold">The roster-aware tender model</h2>
+          <p className="prose-narrow mt-2 text-[15px] leading-snug">
+            A second model for the offseason question only: at the September 1 and season-end snapshots, for players two-plus years past
+            their debut, will he still be on the 40-man after the tender deadline? It rebuilds each club&apos;s returning depth at his role
+            (starters, relievers, catchers, infielders, outfielders, split by games-started share; departing free agents removed), ranks it
+            by a Marcel-style projection from FanGraphs WAR history, and records his rank, the projection at the last job slot for the
+            role ({Object.entries(roster_fit.jobs as Record<string, number>).map(([k, v]) => `${k} ${v}`).join(", ")}), and his margin over it.
+          </p>
+          <table className="board mt-3">
+            <thead><tr><th>Features</th><th className="num">Log loss</th><th className="num">AUC</th><th className="num">Rows</th></tr></thead>
+            <tbody>
+              <tr><td>His own mechanics and record only</td><td className="num">{roster_fit.own_only.logloss}</td><td className="num">{roster_fit.own_only.auc}</td><td className="num">{roster_fit.own_only.n.toLocaleString()}</td></tr>
+              <tr className="font-semibold"><td>Plus rank among the club&apos;s returners</td><td className="num">{roster_fit.with_roster_fit.logloss}</td><td className="num">{roster_fit.with_roster_fit.auc}</td><td className="num">{roster_fit.with_roster_fit.n.toLocaleString()}</td></tr>
+            </tbody>
+          </table>
+          <p className="mt-2 text-sm text-ink-soft">
+            Starters kept through the offseason by rank among returning starters, 2013-2025:{" "}
+            {Object.entries(roster_fit.sp_kept_by_rank as Record<string, { kept: number; n: number }>).map(([k, v], i) => `${i ? "; " : ""}rank ${k.replace("(", "").replace("]", "").replace(", ", " to ")}: ${pct(v.kept)} (n ${v.n})`)}.
+            Base rate kept {pct(roster_fit.own_only.base_rate_kept)}.
+          </p>
+        </section>
+      ) : null}
 
       {ablation ? (
         <section className="mt-8 max-w-3xl">

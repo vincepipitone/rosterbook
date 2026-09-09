@@ -25,6 +25,9 @@ GROUPS = {
     "injury": ["il_days_this_season", "on_il60"],
     "recency": ["dfa_365", "claims_365", "outrights_365", "moves_365", "days_since_txn", "rule5_pick"],
     "team": ["team_pct", "team_rd"],
+    # positional supply (2026-09-09): starter/reliever split from games-started share, counts per role, departing FAs per role
+    "supply": ["role", "role_n", "role_vets", "sp_n"],
+    "supply+departing": ["role", "role_n", "role_vets", "sp_n", "role_departing", "role_net", "sp_departing"],
 }
 
 
@@ -56,8 +59,8 @@ def main(only: list[str] | None = None):
     base = list(T.FEATURES)
     out_p = C.PROCESSED / "model" / "ablation.json"
     results = json.loads(out_p.read_text()) if out_p.exists() else {}
-    configs = {"base": base, **{"+" + g: base + cols for g, cols in GROUPS.items()},
-               "+all": base + [c for cols in GROUPS.values() for c in cols]}
+    configs = {"base": base, **{"+" + g: base + [c for c in cols if c not in base] for g, cols in GROUPS.items()},
+               "+all": base + [c for cols in GROUPS.values() for c in cols if c not in base]}
     for name, cols in configs.items():
         if only and name not in only:
             continue
