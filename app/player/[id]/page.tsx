@@ -88,7 +88,8 @@ export default async function PlayerPage({ params }: { params: Promise<{ id: str
                 {r ? (
                   <div className="mt-0.5 text-sm text-ink-soft">
                     {r.summary}{" "}
-                    <a href={r.cite} className="underline" rel="noopener" target="_blank">Arizona Phil&apos;s write-up</a> · {r.cba_era} agreement
+                    <a href={r.cite.url} className="underline" rel="noopener" target="_blank">{r.cite.source}, {r.cite.article}, p. {r.cite.page}</a>
+                    {r.cite.mlr ? ` (the number itself is in ${r.cite.mlr})` : ""}
                   </div>
                 ) : null}
               </li>

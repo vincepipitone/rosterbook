@@ -61,9 +61,13 @@ npm run build                                  # Next.js 16, fully static (1,400
 
 ## Sources and terms
 
-MLB Stats API (non-commercial use), FanGraphs RosterResource (one low-volume nightly snapshot;
-never called at runtime), The Cub Reporter (CC BY-ND 3.0; rules paraphrased and linked, table used
-only for validation), Chadwick Bureau. Not affiliated with MLB, the MLBPA or any club.
+Rules: the 2022-2026 Basic Agreement (MLBPA's published PDF, mirrored at `public/cba/`); every
+catalog entry cites article and printed page and deep-links to the PDF page (Articles are offset
++14 from printed numbering, Attachments +16). Mechanics that live in the Major League Rules (Rule 5
+eligibility, waiver order, option-year count, the 60-day IL calendar) cite the incorporating article
+and name the rule. Data: MLB Stats API (non-commercial use), FanGraphs RosterResource (one
+low-volume nightly snapshot; never called at runtime), The Cub Reporter (validation only, CC BY-ND),
+Chadwick Bureau. Not affiliated with MLB, the MLBPA or any club.
 
 ## Next
 

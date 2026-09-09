@@ -20,7 +20,7 @@ export async function loadTeamPlayers(abbr: string): Promise<Record<string, Play
   return readJson(`players/${abbr}.json`);
 }
 
-export async function loadRules(): Promise<{ meta: Meta; cba_eras: { id: string; effective_from: string; effective_to: string | null }[]; rules: Rule[] }> {
+export async function loadRules(): Promise<{ meta: Meta; cba_eras: { id: string; effective_from: string; effective_to: string | null }[]; cba: { title: string; pdf: string; source_url: string }; rules: Rule[] }> {
   return readJson("rules.json");
 }
 

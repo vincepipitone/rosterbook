@@ -170,6 +170,8 @@ def evaluate(p: dict, ctx: dict) -> dict:
     if status == "D60":
         must = ws_end + dt.timedelta(days=5)
         flags.append(flag("il.sixty", "yes", f"On the 60-day IL: not counting against the 40-man now, but must be reinstated by {must:%b %-d} (5th day after the World Series).", value=must.isoformat()))
+    if status in ("D7", "D10", "D15", "D60"):
+        flags.append(flag("il.no_assignment", "info", "On the Major League injured list: cannot be optioned or outrighted until he is healthy and reinstated, so an injured fringe player keeps his roster spot by default.", value=status))
     if p.get("on_option") and opt["option_days_this_season"] < era["option_day_threshold"] and left > 0:
         need = era["option_day_threshold"] - opt["option_days_this_season"]
         flags.append(flag("opt.years", "watch", f"Currently optioned with {opt['option_days_this_season']} days this season: {need} more and a {season} option year is used.", value=need))

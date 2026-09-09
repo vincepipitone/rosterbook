@@ -20,10 +20,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="mx-auto max-w-7xl px-4 pb-16 sm:px-6">{children}</main>
         <footer className="mx-auto max-w-7xl px-4 py-8 text-sm text-ink-soft sm:px-6">
           <p className="prose-narrow">
-            Rosterbook is an independent fan project, not affiliated with MLB, the MLBPA or any club. Transactions and
-            rosters come from MLB&apos;s public Stats API; options remaining, service time and contracts from FanGraphs
-            RosterResource; the rules are paraphrased from Arizona Phil&apos;s roster-rules guide at The Cub Reporter.
-            The 2022-2026 Basic Agreement expires December 1, 2026; every rule here carries the agreement it belongs to.
+            Rosterbook is an independent fan project, not affiliated with MLB, the MLBPA or any club. Every rule is cited to the{" "}
+            <a href="/cba/2022-2026-basic-agreement.pdf" className="underline">2022-2026 Basic Agreement</a>, which expires December 1, 2026.
+            Transactions and rosters come from MLB&apos;s public Stats API; options remaining, service time and contracts from FanGraphs
+            RosterResource; the Cubs board is checked nightly against Arizona Phil&apos;s at The Cub Reporter.
           </p>
         </footer>
         <Analytics />

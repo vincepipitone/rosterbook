@@ -5,7 +5,7 @@ export type Flag = {
   value: string | number | null;
   why: string;
   since?: string | null;
-  cite?: string;
+  cite?: Cite;
   cba_era?: string;
 };
 
@@ -81,4 +81,5 @@ export type Team = {
 export type Meta = { generated_at: string; fg_snapshot: string; contracts_snapshot: string; statsapi_snapshot: string; season: number; cba_era: string; n_players: number; n_forty: number };
 export type Deadlines = Record<string, string | null>;
 
-export type Rule = { id: string; cat: string; cba_era: string; title: string; summary: string; detail: string; cite: string };
+export type Cite = { source: string; article: string; page: number; pdf_page: number; url: string; mlr: string | null };
+export type Rule = { id: string; cat: string; cba_era: string; title: string; summary: string; detail: string; cite: Cite };

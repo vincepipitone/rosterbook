@@ -11,7 +11,7 @@ import sys
 
 from pipeline import config as C
 from pipeline.fetch.statsapi import load
-from pipeline.rules.catalog import RULES
+from pipeline.rules.catalog import CBA_PDF, CBA_SOURCE_URL, CBA_TITLE, RULES
 
 SUMMARY_KEYS = ["id", "name", "team", "pos", "bats", "throws", "age", "on_forty", "roster_status", "status_code", "on_option",
                 "il", "injury", "mls_prior", "mls_prior_days", "mls_now", "mls_this_season_days", "mls_end_proj", "options_left",
@@ -70,7 +70,8 @@ def main():
         write(out / "players" / f"{abbr}.json", {p["id"]: p for p in roster})
         teams.append({k: team[k] for k in ("abbr", "name", "id", "counts")})
     write(out / "teams.json", {"meta": meta, "deadlines": deadlines, "teams": teams})
-    write(out / "rules.json", {"meta": meta, "cba_eras": [{k: v for k, v in e.items() if k in ("id", "effective_from", "effective_to")} for e in C.CBA_ERAS], "rules": RULES})
+    write(out / "rules.json", {"meta": meta, "cba_eras": [{k: v for k, v in e.items() if k in ("id", "effective_from", "effective_to")} for e in C.CBA_ERAS],
+                               "cba": {"title": CBA_TITLE, "pdf": CBA_PDF, "source_url": CBA_SOURCE_URL}, "rules": RULES})
     ooo = [slim(p) for p in players if p["on_forty"] and p["options_left"] == 0 and (p["mls_prior_days"] or 0) < 860]
     write(out / "out_of_options.json", {"meta": meta, "players": sorted(ooo, key=lambda p: (p["team"], p["name"].split()[-1]))})
     r5 = [{"team": p["team"], **{k: p.get(k) for k in ("id", "name", "pos", "age", "acquired", "signyear", "prior_outrights")}, "rule5": p["rule5"]}
