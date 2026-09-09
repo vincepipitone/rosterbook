@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-09T01:08:23+00:00",
+ "generated_at": "2026-09-09T15:38:31+00:00",
  "azphil": {
   "source": "thecubreporter.com/cubs-40-man-roster",
   "page_updated": "9-5-2026",
@@ -2171,7 +2171,7 @@
    },
    "2026": {
     "designated": {
-     "n": 534,
+     "n": 535,
      "expected": 378,
      "ok": true
     },
@@ -2196,7 +2196,7 @@
      "ok": true
     },
     "selected": {
-     "n": 433,
+     "n": 434,
      "expected": 371,
      "ok": true
     }
