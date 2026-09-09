@@ -38,6 +38,7 @@ jobs:
           python -m pipeline.fetch.statsapi rosters --dates today
           python -m pipeline.fetch.fangraphs roster
           python -m pipeline.fetch.fangraphs contracts
+          python -m pipeline.fetch.fangraphs projections
           python -m pipeline.fetch.statsapi people
           python -m pipeline.fetch.statsapi people-refresh
           python -m pipeline.fetch.statsapi stats --years $Y-$Y

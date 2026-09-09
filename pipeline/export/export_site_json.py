@@ -14,7 +14,7 @@ from pipeline.fetch.statsapi import load
 from pipeline.rules.catalog import CBA_PDF, CBA_SOURCE_URL, CBA_TITLE, RULES
 
 MODEL_KEYS = ["p_none", "p_designated", "p_optioned", "p_traded", "p_released"]
-SUMMARY_KEYS = ["model"] + ["id", "name", "team", "pos", "bats", "throws", "age", "on_forty", "roster_status", "status_code", "on_option",
+SUMMARY_KEYS = ["model", "proj", "war_now", "context"] + ["id", "name", "team", "pos", "bats", "throws", "age", "on_forty", "roster_status", "status_code", "on_option",
                 "il", "injury", "mls_prior", "mls_prior_days", "mls_now", "mls_this_season_days", "mls_end_proj", "options_left",
                 "options_left_source", "fangraphs_options", "burning_this_season", "option_days_this_season",
                 "assignments_used", "assignments_available", "prior_outrights", "prior_dfa", "acquired", "acquired_code",

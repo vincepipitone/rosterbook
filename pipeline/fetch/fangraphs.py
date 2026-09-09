@@ -80,6 +80,23 @@ def fetch_contracts(season: int, date: dt.date | None = None) -> None:
         time.sleep(1.5)
 
 
+def fetch_projections(date: dt.date | None = None) -> None:
+    """ZiPS and Steamer projected WAR per player (the projection systems' current full-season lines)."""
+    date = date or dt.date.today()
+    out_dir = C.RAW / "fg_proj" / date.isoformat()
+    for typ in ("zips", "steamer"):
+        for stats in ("bat", "pit"):
+            p = out_dir / f"{typ}_{stats}.json.gz"
+            if p.exists():
+                continue
+            rows = get(f"https://www.fangraphs.com/api/projections?type={typ}&stats={stats}&pos=all&team=0&players=0&lg=all")
+            keep = ["xMLBAMID", "PlayerName", "Team", "WAR", "PA", "IP", "wOBA", "ERA", "FIP", "K%", "BB%", "wRC+", "K/9", "BB/9"]
+            slim = [{k: r.get(k) for k in keep} for r in rows if r.get("xMLBAMID")]
+            dump(slim, p)
+            print(typ, stats, len(slim), file=sys.stderr)
+            time.sleep(1.5)
+
+
 def fetch_tracker(years: list[int]) -> None:
     for y in years:
         rows = get(f"https://www.fangraphs.com/api/roster-resource/transaction-tracker/data?season={y}")
@@ -90,12 +107,14 @@ def fetch_tracker(years: list[int]) -> None:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("what", choices=["roster", "tracker", "contracts"])
+    ap.add_argument("what", choices=["roster", "tracker", "contracts", "projections"])
     ap.add_argument("--years")
     a = ap.parse_args()
     if a.what == "roster":
         fetch_roster()
     elif a.what == "contracts":
         fetch_contracts(C.CURRENT_SEASON)
+    elif a.what == "projections":
+        fetch_projections()
     else:
         fetch_tracker(years_arg(a.years, "2020-2026"))

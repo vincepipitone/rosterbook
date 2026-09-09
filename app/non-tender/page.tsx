@@ -27,8 +27,12 @@ export default async function NonTenderPage() {
           non-tenders and November outrights alike.
         </p>
         <p className="prose-narrow mt-2 text-sm text-ink-soft">
-          Cut risk = designated or released within 90 days. Arbitration salary projections are added when FanGraphs and MLB Trade Rumors
-          publish them in October; until then the table shows this year&apos;s salary where a contract is on file.
+          The two risk columns are the model&apos;s: designated or outrighted, and released or non-tendered, within 90 days. Historically
+          most arbitration-eligible cuts happen as November outrights rather than at the deadline itself, so read them together. The model
+          learns from roster mechanics, history, this season&apos;s line and positional depth; it does not see projections or dollars.
+          Those sit alongside as context: ZiPS projected WAR, this year&apos;s WAR, how he was acquired (a club that just traded for a
+          player has historically cut him about half as often), and the same-position free agents his club is losing. Arbitration salary
+          projections are added when FanGraphs and MLB Trade Rumors publish them in October.
         </p>
       </div>
       <div className="mt-6 overflow-x-auto">
@@ -36,7 +40,9 @@ export default async function NonTenderPage() {
           <thead>
             <tr>
               <th>Team</th><th>Player</th><th className="num">Age</th><th className="num">Service thru {season - 1}</th>
-              <th className="num">Arb year</th><th className="num">{season} salary</th><th className="num">Cut risk</th><th className="num">Optioned</th>
+              <th className="num">Arb year</th><th className="num">{season} salary</th>
+              <th className="num">DFA / outright</th><th className="num">Non-tender</th>
+              <th className="num">ZiPS WAR</th><th className="num">{season} WAR</th><th>Acquired</th><th>Same-position FAs leaving</th>
               <th>Status</th><th>Rights</th>
             </tr>
           </thead>
@@ -49,8 +55,12 @@ export default async function NonTenderPage() {
                 <td className="num">{p.mls_prior ?? "n/a"}{p.super_two ? <span className="stamp stamp-amber ml-2">S2</span> : null}</td>
                 <td className="num">{p.arb_year ?? ""}</td>
                 <td className="num">{money(p.salary_2026)}</td>
-                <td className={`num ${(p.model?.p_cut ?? 0) >= 0.3 ? "font-semibold text-red" : (p.model?.p_cut ?? 0) >= 0.15 ? "text-amber" : ""}`}>{p.model ? pct(p.model.p_cut) : ""}</td>
-                <td className="num text-ink-soft">{p.model ? pct(p.model.p_optioned) : ""}</td>
+                <td className={`num ${(p.model?.p_designated ?? 0) >= 0.3 ? "font-semibold text-red" : (p.model?.p_designated ?? 0) >= 0.15 ? "text-amber" : ""}`}>{p.model ? pct(p.model.p_designated) : ""}</td>
+                <td className={`num ${(p.model?.p_released ?? 0) >= 0.1 ? "font-semibold text-red" : (p.model?.p_released ?? 0) >= 0.05 ? "text-amber" : ""}`}>{p.model ? pct(p.model.p_released) : ""}</td>
+                <td className="num">{p.proj?.zips?.war != null ? p.proj.zips.war.toFixed(1) : ""}</td>
+                <td className="num">{p.war_now != null ? p.war_now.toFixed(1) : ""}</td>
+                <td className="whitespace-nowrap text-ink-soft">{p.acquired ?? ""}</td>
+                <td className="text-ink-soft">{p.context?.same_group_leaving?.length ? `${p.context.same_group_leaving.length} of ${p.context.same_group_on_forty} ${p.context.group}: ${p.context.same_group_leaving.join(", ")}` : ""}</td>
                 <td className="whitespace-nowrap">{p.roster_status}</td>
                 <td><Stamps flags={p.flags} /></td>
               </tr>

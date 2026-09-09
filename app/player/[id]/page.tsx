@@ -92,6 +92,15 @@ export default async function PlayerPage({ params }: { params: Promise<{ id: str
               ))}.
             </p>
           ) : null}
+          {(p.proj?.zips?.war != null || p.context) ? (
+            <p className="mt-2 text-[15px] leading-snug">
+              Context the model does not weigh:{" "}
+              {p.proj?.zips?.war != null ? `ZiPS projects ${p.proj.zips.war.toFixed(1)} WAR` : ""}
+              {p.war_now != null ? `${p.proj?.zips?.war != null ? ", " : ""}${p.war_now.toFixed(1)} WAR this season` : ""}
+              {p.context ? `; ${p.context.same_group_on_forty} ${p.context.group} on the 40-man` : ""}
+              {p.context?.same_group_leaving?.length ? `, of whom ${p.context.same_group_leaving.join(", ")} ${p.context.same_group_leaving.length === 1 ? "is" : "are"} headed to free agency` : ""}.
+            </p>
+          ) : null}
           <p className="mt-1 text-sm text-ink-soft">
             Trained on every 40-man roster snapshot since 2011 and what happened in the following 90 days; it sees roster status, options,
             service, history and last season&apos;s line, not this season&apos;s performance or the club&apos;s intentions.{" "}

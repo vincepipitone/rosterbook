@@ -41,6 +41,13 @@ def main() -> list[dict]:
         if p_od.exists():
             on40_at_od |= {r["id"] for r in load(p_od)}
     people = load_people()
+    proj = {}
+    pdirs = sorted(d for d in (C.RAW / "fg_proj").glob("*") if d.is_dir()) if (C.RAW / "fg_proj").exists() else []
+    if pdirs:
+        for f in pdirs[-1].glob("*.json.gz"):
+            typ = f.name.split("_")[0]
+            for r in load(f):
+                proj.setdefault(r["xMLBAMID"], {})[typ] = {"war": r.get("WAR"), "pa": r.get("PA"), "ip": r.get("IP")}
     drafts = {}
     for p in (C.RAW / "draft").glob("*.json.gz"):
         for r in load(p):
@@ -98,6 +105,7 @@ def main() -> list[dict]:
                 "contract": contracts.get(pid), "tx": tx_by.get(pid, tx.iloc[0:0]),
                 "mlevel": f.get("mlevel"), "fg_type": fg_type, "fg_role": f.get("role"), "age_fg": f.get("age"),
                 "club_forty_count": forty_count,
+                "proj": proj.get(pid), "war_now": f.get("actual_WAR"), "war_ros": f.get("proj_WAR"),
             }
             try:
                 out.append(engine.evaluate(rec, ctx))
@@ -106,6 +114,23 @@ def main() -> list[dict]:
                 raise
             n40 += on_forty
         print(abbr, "done", file=sys.stderr)
+    # club context: same-position teammates headed to free agency (needs every player's flags first)
+    def fine_group(pos):
+        p_ = (pos or "").upper()
+        return "SP" if p_ == "SP" else "RP" if p_ in ("RP", "CL", "P") else "C" if p_ == "C" else "IF" if p_ in ("1B", "2B", "3B", "SS", "IF", "DH") else "OF"
+    by_team = {}
+    for o in out:
+        if o["on_forty"]:
+            by_team.setdefault(o["team"], []).append(o)
+    for team_players in by_team.values():
+        leaving = {}
+        for o in team_players:
+            if any(fl["rule"] == "mls.xx_b" and fl["status"] == "yes" for fl in o["flags"]) or (o.get("contract_status") or "").startswith("FREE AGENT"):
+                leaving.setdefault(fine_group(o["pos"]), []).append(o["name"])
+        for o in team_players:
+            g = fine_group(o["pos"])
+            o["context"] = {"group": g, "same_group_on_forty": sum(1 for x in team_players if fine_group(x["pos"]) == g),
+                            "same_group_leaving": leaving.get(g, [])}
     meta = {"generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "fg_snapshot": fg_date.isoformat(),
             "contracts_snapshot": ct_date.isoformat(), "statsapi_snapshot": snap_date, "season": today.year,
             "cba_era": era["id"], "n_players": len(out), "n_forty": n40}

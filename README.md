@@ -76,9 +76,12 @@ rows) into as-of features plus the first club-driven event in the next 90 days (
 optioned / traded / released-or-non-tendered / none). `train.py` fits a multiclass LightGBM,
 evaluates it leave-one-season-out (pooled log loss 0.550 vs 0.730 for a time-of-year base rate;
 AUC designated .86, optioned .93, released .87, traded .72), publishes decile calibration and
-feature gain on `/model`, and scores the current snapshot with built-in SHAP reasons. Outputs feed
-the board (cut / option risk), each player page, and `/non-tender` (arbitration-eligible players
-ranked by cut risk through the tender deadline).
+feature gain on `/model`, and scores the current snapshot with built-in SHAP reasons. Features include
+this season's line (for snapshots from September 1 on), whether the player was acquired by trade
+or claim in the last 60 days, and positional depth on the 40-man. Outputs feed the board (cut /
+option risk), each player page, and `/non-tender` (arbitration-eligible players ranked by cut risk
+through the tender deadline, with ZiPS projected WAR, this year's WAR, acquisition and the club's
+departing same-position free agents shown as context the model does not weigh).
 
 Also on each player page: post-season eligibility as it stands (Major League Rule 40 mechanics)
 and what an option, DFA/outright, release, trade or the offseason would mean for him.

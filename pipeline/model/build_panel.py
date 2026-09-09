@@ -112,6 +112,13 @@ def main() -> pd.DataFrame:
             continue
         roster = load(f)
         n40 = sum(1 for r in roster if r.get("status") != "D60"); n60 = sum(1 for r in roster if r.get("status") == "D60")
+        grp_n, grp_opt, grp_vet = defaultdict(int), defaultdict(int), defaultdict(int)
+        for r in roster:
+            gk = pos_group(r.get("pos"))
+            grp_n[gk] += 1
+            grp_opt[gk] += int(r.get("status") == "RM")
+            dbt = C.d((people.get(r["id"]) or {}).get("mlbDebutDate"))
+            grp_vet[gk] += int(bool(dbt) and (dt.date.fromisoformat(f.name[:10]) - dbt).days >= 6 * 365)
         phase = phase_of(date, seasons)
         season = date.year
         od = C.d(seasons[season]["regularSeasonStartDate"]); end = C.d(seasons[season]["regularSeasonEndDate"])
@@ -127,6 +134,7 @@ def main() -> pd.DataFrame:
                         age=(date - birth).days / 365.25 if birth else np.nan,
                         yrs_since_debut=(date - debut).days / 365.25 if debut and debut <= date else (0.0 if debut is None else -1.0),
                         n40=n40, n60=n60, in_season=int(od <= date <= end), days_to_end=(end - date).days,
+                        grp_n=grp_n[pos_group(r.get("pos"))], grp_optioned=grp_opt[pos_group(r.get("pos"))], grp_vets=grp_vet[pos_group(r.get("pos"))],
                         day_of_year=date.timetuple().tm_yday)
             if g is not None and len(g):
                 before = g[g["date"] < date]
@@ -178,11 +186,16 @@ def main() -> pd.DataFrame:
                 feat.update(prior_outrights=0, prior_dfa=0, prior_claims=0, prior_trades=0, prior_options=0, prior_releases=0, n_txn=0,
                             days_with_club=np.nan, join_type=-1, opts_this_season=0, il_this_season=0, opt_years_used=0,
                             opt_days_this_season=0, options_left_est=3, label="none", label_days=np.nan)
-            # ---- prior-season performance (leak-free)
+            # ---- prior-season performance (leak-free), and the current season once it is essentially complete
             ps = stats.get((pid, season - 1), {})
             feat.update(p_pa=ps.get("pa"), p_ops=ps.get("ops"), p_k=ps.get("k_pct"), p_bb=ps.get("bb_pct"), p_hr=ps.get("hr"),
                         p_ip=ps.get("ip"), p_era=ps.get("era"), p_whip=ps.get("whip"), p_gs=ps.get("gs"), p_pk=ps.get("pk_pct"), p_pbb=ps.get("pbb_pct"),
                         mls_start=fg_mls.get((pid, season)))
+            cs = stats.get((pid, season), {}) if date >= dt.date(season, 9, 1) else {}
+            feat.update(c_pa=cs.get("pa"), c_ops=cs.get("ops"), c_k=cs.get("k_pct"), c_ip=cs.get("ip"), c_era=cs.get("era"), c_whip=cs.get("whip"), c_pk=cs.get("pk_pct"))
+            dwc = feat.get("days_with_club")
+            feat["recent_trade"] = int(feat.get("join_type") == 2 and dwc is not None and not np.isnan(dwc) and dwc <= 60)
+            feat["recent_claim"] = int(feat.get("join_type") == 1 and dwc is not None and not np.isnan(dwc) and dwc <= 60)
             rows.append(feat)
         if k % 500 == 0:
             print(k, file=sys.stderr)

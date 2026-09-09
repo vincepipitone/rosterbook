@@ -18,6 +18,9 @@ export type ModelOut = {
 export type PlayerSummary = {
   id: number;
   model: ModelOut;
+  proj: { zips?: { war: number | null; pa: number | null; ip: number | null }; steamer?: { war: number | null; pa: number | null; ip: number | null } } | null;
+  war_now: number | null;
+  context: { group: string; same_group_on_forty: number; same_group_leaving: string[] } | null;
   name: string;
   team: string;
   pos: string | null;

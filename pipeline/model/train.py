@@ -25,7 +25,8 @@ from pipeline.model.build_panel import LABELS
 FEATURES = ["phase", "status_code", "pos_group", "age", "yrs_since_debut", "n40", "n60", "in_season", "days_to_end", "day_of_year",
             "prior_outrights", "prior_dfa", "prior_claims", "prior_trades", "prior_options", "prior_releases", "n_txn",
             "days_with_club", "join_type", "opts_this_season", "il_this_season", "opt_years_used", "opt_days_this_season",
-            "options_left_est", "p_pa", "p_ops", "p_k", "p_bb", "p_hr", "p_ip", "p_era", "p_whip", "p_gs", "p_pk", "p_pbb", "mls_start"]
+            "options_left_est", "p_pa", "p_ops", "p_k", "p_bb", "p_hr", "p_ip", "p_era", "p_whip", "p_gs", "p_pk", "p_pbb", "mls_start",
+            "c_pa", "c_ops", "c_k", "c_ip", "c_era", "c_whip", "c_pk", "recent_trade", "recent_claim", "grp_n", "grp_optioned", "grp_vets"]
 CATS = ["phase", "status_code", "pos_group", "join_type"]
 PARAMS = dict(objective="multiclass", num_class=len(LABELS), learning_rate=0.05, num_leaves=31, min_data_in_leaf=200,
               feature_fraction=0.8, bagging_fraction=0.8, bagging_freq=1, lambda_l2=5.0, verbose=-1, seed=7)
@@ -41,7 +42,11 @@ PHRASES = {
     "p_pk": "last season's strikeout rate", "p_bb": "last season's walk rate", "p_pbb": "last season's walk rate", "p_whip": "last season's WHIP",
     "p_gs": "last season's starts", "p_hr": "last season's home runs", "mls_start": "service time", "pos_group": "position",
     "il_this_season": "IL stints this season", "prior_releases": "prior releases", "n_txn": "transaction history length",
-    "in_season": "in-season", "days_to_end": "days left in the season", "day_of_year": "calendar", "p_pa": "last season's plate appearances",
+    "in_season": "in-season", "days_to_end": "days left in the season", "day_of_year": "calendar",
+    "c_pa": "this season's plate appearances", "c_ops": "this season's OPS", "c_k": "this season's strikeout rate", "c_ip": "this season's innings",
+    "c_era": "this season's ERA", "c_whip": "this season's WHIP", "c_pk": "this season's strikeout rate",
+    "recent_trade": "acquired by trade in the last 60 days", "recent_claim": "claimed off waivers in the last 60 days",
+    "grp_n": "players at his position group on the 40-man", "grp_optioned": "same-position players on option", "grp_vets": "same-position six-year veterans",
 }
 
 

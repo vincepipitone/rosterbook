@@ -206,6 +206,7 @@ def evaluate(p: dict, ctx: dict) -> dict:
         "signyear": p.get("signyear"), "rule5": r5,
         "contract": {k: (p.get("contract") or {}).get(k) for k in ("description", "contract_type", "end_all", "aav", "no_trade")},
         "contract_full": _contract_now(p.get("contract"), season),
+        "proj": p.get("proj"), "war_now": p.get("war_now"), "war_ros": p.get("war_ros"),
         "contract_status": cs, "contract_status_source": cs_src,
         "flags": flags,
         "transactions": [{"date": r.date.isoformat(), "type": r.type, "subtype": r.subtype, "desc": r.description}
