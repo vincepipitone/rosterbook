@@ -73,6 +73,8 @@ jobs:
           git commit -m "data: nightly refresh $(date -u +%Y-%m-%d)"
           for i in 1 2 3; do
             if git push origin HEAD:main; then exit 0; fi
-            git pull --rebase origin main
+            git fetch origin main
+            # a code push may have landed mid-run; replay the data commit on top, fresh data wins on conflict
+            git rebase -X theirs origin/main || { git rebase --abort; exit 1; }
           done
           exit 1
