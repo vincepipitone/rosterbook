@@ -35,7 +35,7 @@ def get(path: str, **params) -> dict:
             if r.status_code in (429, 500, 502, 503, 504):
                 time.sleep(2 ** attempt)
                 continue
-            r.raise_for_status()
+            raise RuntimeError(f"{r.status_code} {path}")
         except requests.RequestException:
             time.sleep(2 ** attempt)
     raise RuntimeError(f"failed {path} {params}")
@@ -137,10 +137,20 @@ def fetch_people(ids: list[int]) -> None:
     store = load_people()
     todo = sorted(i for i in set(ids) - set(store) if i and i > 0)
     print(f"{len(todo)} people to fetch ({len(store)} cached)", file=sys.stderr)
+    def batch(chunk: list[int]) -> list[dict]:
+        """Batches made only of dead ids 404; split until the live ones come through."""
+        try:
+            return get("/people", personIds=",".join(map(str, chunk)), hydrate="rosterEntries").get("people", [])
+        except RuntimeError:
+            if len(chunk) == 1:
+                print("dead id", chunk[0], file=sys.stderr)
+                return []
+            h = len(chunk) // 2
+            return batch(chunk[:h]) + batch(chunk[h:])
+
     for k in range(0, len(todo), 100):
         chunk = todo[k:k + 100]
-        data = get("/people", personIds=",".join(map(str, chunk)), hydrate="rosterEntries")
-        for p in data.get("people", []):
+        for p in batch(chunk):
             slim = {f: p.get(f) for f in ["id", "fullName", "birthDate", "birthCountry", "mlbDebutDate", "draftYear", "active"]}
             slim["pos"] = (p.get("primaryPosition") or {}).get("abbreviation")
             slim["bats"] = (p.get("batSide") or {}).get("code")
@@ -164,8 +174,11 @@ def refresh_people(ids: list[int]) -> None:
     ids = [i for i in ids if i and i > 0]
     for k in range(0, len(ids), 100):
         chunk = ids[k:k + 100]
-        data = get("/people", personIds=",".join(map(str, chunk)), hydrate="rosterEntries")
-        for p in data.get("people", []):
+        try:
+            people = get("/people", personIds=",".join(map(str, chunk)), hydrate="rosterEntries").get("people", [])
+        except RuntimeError:
+            people = []
+        for p in people:
             if p["id"] in store:
                 store[p["id"]]["rosterEntries"] = [
                     {"team": (e.get("team") or {}).get("id"), "teamName": (e.get("team") or {}).get("name"),
