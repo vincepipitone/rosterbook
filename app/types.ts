@@ -65,6 +65,8 @@ export type PlayerFull = PlayerSummary & {
   option_history: Record<string, { days: number; burned: boolean; assignments: number; intervals: { start: string; end: string | null; close: string | null; days: number; source: string; exempt: string | null }[] }>;
   contract: { description: string | null; contract_type: string | null; end_all: number | null; aav: number | null; no_trade: string | null } | null;
   transactions: { date: string; type: string; subtype: string; desc: string }[];
+  postseason: { status: string; label: string; why: string; cutoff: string; il_start?: string | null; days_served?: number | null } | null;
+  scenarios: { action: string; possible: boolean; rules: string[]; text: string }[];
 };
 
 export type TeamCounts = { forty: number; il60: number; optioned: number; out_of_options: number; xxb_fa: number; arb: number; rule5_exposed: number; pool: number };

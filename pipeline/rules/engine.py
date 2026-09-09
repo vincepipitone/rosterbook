@@ -9,7 +9,7 @@ import datetime as dt
 import pandas as pd
 
 from pipeline import config as C
-from pipeline.rules import options as O, rule5 as R5, service as S
+from pipeline.rules import options as O, rule5 as R5, scenarios as SC, service as S
 from pipeline.rules.catalog import BY_ID
 
 YEAR = 172
@@ -179,7 +179,7 @@ def evaluate(p: dict, ctx: dict) -> dict:
     # ---------------- contract label
     cs, cs_src = contract_status_2027(p.get("contract"), m_end, super_two)
 
-    return {
+    out = {
         "id": p["id"], "name": p["name"], "team": p["team_abbr"], "team_id": p["team_id"], "pos": p.get("pos"),
         "bats": p.get("bats"), "throws": p.get("throws"), "birth": p["birth"].isoformat() if p.get("birth") else None,
         "age": (round((today - p["birth"]).days / 365.25, 1) if p.get("birth") else None),
@@ -200,3 +200,14 @@ def evaluate(p: dict, ctx: dict) -> dict:
         "transactions": [{"date": r.date.isoformat(), "type": r.type, "subtype": r.subtype, "desc": r.description}
                          for r in tx.sort_values("date", ascending=False).head(60).itertuples()] if len(tx) else [],
     }
+    if p.get("on_forty"):
+        ps = SC.postseason(p, out, ctx)
+        out["postseason"] = ps
+        if ps.get("status") in ("eligible", "needs_reinstatement", "eligible_after_activation", "replacement_only", "ineligible") and today >= dt.date(season, 9, 1):
+            st = {"eligible": "yes", "needs_reinstatement": "watch", "eligible_after_activation": "watch", "replacement_only": "info", "ineligible": "no"}[ps["status"]]
+            out["flags"].append(flag("post.eligibility", st, ps["why"], value=ps["label"]))
+        out["scenarios"] = SC.scenarios(p, out, ctx, era)
+    else:
+        out["postseason"] = None
+        out["scenarios"] = []
+    return out

@@ -76,6 +76,42 @@ export default async function PlayerPage({ params }: { params: Promise<{ id: str
         <div><span className="text-ink-soft">Contract</span><br />{p.contract?.description ?? "none listed"}{p.contract?.no_trade ? `; ${p.contract.no_trade}` : ""}</div>
       </div>
 
+      {p.postseason ? (
+        <section className="mt-8 max-w-3xl border-l-2 border-ink pl-3">
+          <h2 className="text-xl font-semibold">October: {p.postseason.label}</h2>
+          <p className="mt-1 text-[15px] leading-snug">{p.postseason.why}</p>
+          <p className="mt-1 text-sm text-ink-soft">
+            {ruleById["post.eligibility"]?.summary}{" "}
+            <a href={ruleById["post.eligibility"]?.cite.url} className="underline" rel="noopener" target="_blank">Attachment 25 (Major League Rule 40)</a>
+          </p>
+        </section>
+      ) : null}
+
+      {p.scenarios?.length ? (
+        <section className="mt-8 max-w-3xl">
+          <h2 className="text-xl font-semibold">What happens if the club&hellip;</h2>
+          <dl className="mt-3 space-y-4">
+            {p.scenarios.map((s) => (
+              <div key={s.action} className={`border-l-2 pl-3 ${s.possible ? "border-rule" : "border-red"}`}>
+                <dt className="font-medium">
+                  {s.action.endsWith("him") || s.action.includes("him ") ? s.action.charAt(0).toLowerCase() + s.action.slice(1) : s.action}
+                  {!s.possible ? <span className="stamp stamp-red ml-2">BLOCKED</span> : null}
+                </dt>
+                <dd className="mt-0.5 text-[15px] leading-snug">{s.text}</dd>
+                <dd className="mt-0.5 text-sm text-ink-soft">
+                  {s.rules.filter((id) => ruleById[id]).map((id, i) => (
+                    <span key={id}>
+                      {i ? " · " : ""}
+                      <a href={`/rules#${id}`} className="underline">{ruleById[id].title}</a>
+                    </span>
+                  ))}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      ) : null}
+
       <section className="mt-8">
         <h2 className="text-xl font-semibold">What the rules say about him</h2>
         <ul className="prose-narrow mt-3 space-y-3">

@@ -59,6 +59,7 @@ def main() -> list[dict]:
             if c.get("mlbamid") and (c["mlbamid"] not in contracts or rank(c) > rank(contracts[c["mlbamid"]])):
                 contracts[c["mlbamid"]] = c
         sa = {r["id"]: r for r in load(roster_year_dir / f"{snap_date}_{team_id}.json")}
+        forty_count = sum(1 for f in fg if f.get("roster40") == "Y")
         for f in fg:
             pid = f.get("mlbamid")
             if not pid:
@@ -96,6 +97,7 @@ def main() -> list[dict]:
                 "first_pro_year": first_pro_year, "rosterEntries": entries, "club_since": club_since,
                 "contract": contracts.get(pid), "tx": tx_by.get(pid, tx.iloc[0:0]),
                 "mlevel": f.get("mlevel"), "fg_type": fg_type, "fg_role": f.get("role"), "age_fg": f.get("age"),
+                "club_forty_count": forty_count,
             }
             try:
                 out.append(engine.evaluate(rec, ctx))

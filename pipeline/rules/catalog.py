@@ -40,6 +40,13 @@ RULES: list[dict] = [
          detail="He may take one workout without pay or service time. Sending him back without adding him must be justified by a change in "
                 "circumstances, which is why 'phantom' call-ups stopped after 2022.",
          cite=cba("Article XV(E)(3)", 72)),
+    dict(id="post.eligibility", cat="Roster limits", cba_era="2022-2026", title="Post-season roster eligibility",
+         summary="The post-season eligibility list is fixed at noon ET on September 1: everyone on the 40-man, the 60-day IL or the military list at that moment, who then stays there without interruption.",
+         detail="Major League Rule 40; the agreement's Attachment 25 defers post-season procedure to the Major League Rules. A 60-day IL player "
+                "must have served 60 days and be reinstated before he can play. A player outrighted after the cutoff loses automatic "
+                "eligibility and can return only as an approved replacement for an injured player, as can any player who was in the "
+                "organization before the cutoff; replacements need a 40-man spot. A drug-program suspension that year makes a player ineligible.",
+         cite=cba("Attachment 25", 253, attachment=True, mlr="Major League Rule 40")),
     # ---------------------------------------------------------------- injured list
     dict(id="il.sixty", cat="Injured list", cba_era="2022-2026", title="60-day IL and the November crunch",
          summary="A player on the 60-day IL is off the 40-man, but every 60-day IL player must be reinstated after the World Series, healthy or not.",
