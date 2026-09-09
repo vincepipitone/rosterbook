@@ -15,7 +15,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
         with:
@@ -51,7 +51,7 @@ jobs:
           python -m pytest pipeline/tests -q
           python -m pipeline.validate.run
           python -m pipeline.model.build_panel
-          python -m pipeline.model.train
+          if [ "$(date -u +%u)" = "7" ]; then python -m pipeline.model.train; else python -m pipeline.model.train --no-eval; fi
           python -m pipeline.export.export_site_json
           python - <<'EOF'
           import json, sys

@@ -19,7 +19,7 @@ import pandas as pd
 from sklearn.metrics import log_loss, roc_auc_score
 
 from pipeline import config as C
-from pipeline.fetch.statsapi import dump
+from pipeline.fetch.statsapi import dump, load
 from pipeline.model.build_panel import LABELS
 
 FEATURES = ["phase", "status_code", "pos_group", "age", "yrs_since_debut", "n40", "n60", "in_season", "days_to_end", "day_of_year",
@@ -113,11 +113,16 @@ def _val(v):
     return float(v) if isinstance(v, (int, float, np.floating, np.integer)) else str(v)
 
 
-def main():
+def main(do_eval: bool = True):
     df = pd.read_parquet(C.PROCESSED / "model_panel.parquet")
     df["y"] = df["label"].map({l: i for i, l in enumerate(LABELS)})
     train = df[df["censored"] == 0].reset_index(drop=True)
-    report = evaluate(train)
+    prev = C.PROCESSED / "model" / "predictions.json.gz"
+    if do_eval or not prev.exists():
+        report = evaluate(train)
+        report["evaluated_at"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+    else:
+        report = load(prev)["report"]   # weekly evaluation carried forward; nightly run only refits
     model = lgb.train(PARAMS, lgb.Dataset(prep(train), train["y"], categorical_feature=CATS), ROUNDS)
     out_dir = C.PROCESSED / "model"; out_dir.mkdir(exist_ok=True)
     model.save_model(str(out_dir / "model.txt"))
@@ -142,4 +147,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import sys as _s
+    main(do_eval="--no-eval" not in _s.argv)
