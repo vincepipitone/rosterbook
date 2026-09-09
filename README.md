@@ -69,9 +69,16 @@ and name the rule. Data: MLB Stats API (non-commercial use), FanGraphs RosterRes
 low-volume nightly snapshot; never called at runtime), The Cub Reporter (validation only, CC BY-ND),
 Chadwick Bureau. Not affiliated with MLB, the MLBPA or any club.
 
-## Next
+## The model
 
-Phase 2 is the transaction-probability model: per player and as-of date, the probability of being
-designated, optioned, traded, released, or selected in Rule 5 over the next window, trained on the
-2011-2025 log with leave-one-season-out evaluation and SHAP reasons rendered as phrases. The labels,
-snapshots and features are already in `data/`.
+`pipeline/model/build_panel.py` turns every dated 40-man snapshot since 2011 (~190k player-snapshot
+rows) into as-of features plus the first club-driven event in the next 90 days (designated /
+optioned / traded / released-or-non-tendered / none). `train.py` fits a multiclass LightGBM,
+evaluates it leave-one-season-out (pooled log loss 0.550 vs 0.730 for a time-of-year base rate;
+AUC designated .86, optioned .93, released .87, traded .72), publishes decile calibration and
+feature gain on `/model`, and scores the current snapshot with built-in SHAP reasons. Outputs feed
+the board (cut / option risk), each player page, and `/non-tender` (arbitration-eligible players
+ranked by cut risk through the tender deadline).
+
+Also on each player page: post-season eligibility as it stands (Major League Rule 40 mechanics)
+and what an option, DFA/outright, release, trade or the offseason would mean for him.

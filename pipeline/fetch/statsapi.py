@@ -191,6 +191,25 @@ def all_known_ids() -> list[int]:
     return sorted(ids)
 
 
+# ---------------------------------------------------------------- season stats (league-wide, one call per season/group)
+HIT_KEYS = ["gamesPlayed", "plateAppearances", "avg", "obp", "slg", "ops", "strikeOuts", "baseOnBalls", "homeRuns", "stolenBases"]
+PIT_KEYS = ["gamesPlayed", "gamesStarted", "inningsPitched", "era", "whip", "strikeOuts", "baseOnBalls", "battersFaced", "saves", "homeRuns"]
+
+
+def fetch_stats(year: int) -> None:
+    for group, keys in (("hitting", HIT_KEYS), ("pitching", PIT_KEYS)):
+        p = C.RAW / "stats" / f"{year}_{group}.json.gz"
+        if p.exists() and year < C.CURRENT_SEASON:
+            continue
+        data = get("/stats", stats="season", group=group, season=year, sportId=1, playerPool="all", limit=5000)
+        rows = []
+        for s in (data.get("stats") or [{}])[0].get("splits", []):
+            st = s.get("stat", {})
+            rows.append({"id": s["player"]["id"], "team": (s.get("team") or {}).get("id"), **{k: st.get(k) for k in keys}})
+        dump(rows, p)
+        print(year, group, len(rows), file=sys.stderr)
+
+
 # ---------------------------------------------------------------- draft
 def fetch_draft(year: int) -> None:
     data = get(f"/draft/{year}")
@@ -209,7 +228,7 @@ def fetch_draft(year: int) -> None:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("what", choices=["seasons", "transactions", "rosters", "people", "people-refresh", "draft"])
+    ap.add_argument("what", choices=["seasons", "transactions", "rosters", "people", "people-refresh", "draft", "stats"])
     ap.add_argument("--years")
     ap.add_argument("--dates", default="snapshot")
     a = ap.parse_args()
@@ -226,6 +245,9 @@ if __name__ == "__main__":
         latest = max(d for d in (C.RAW / "fg_roster").glob("*") if d.is_dir())
         ids = sorted({r["mlbamid"] for p in latest.glob("*.json") for r in load(p) if r.get("mlbamid")})
         refresh_people(ids)
+    elif a.what == "stats":
+        for y in years_arg(a.years, f"{C.FIRST_SEASON - 1}-{C.CURRENT_SEASON}"):
+            fetch_stats(y)
     elif a.what == "draft":
         for y in years_arg(a.years, "2005-2026"):
             fetch_draft(y); print(y, file=sys.stderr)

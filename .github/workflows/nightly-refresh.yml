@@ -40,6 +40,7 @@ jobs:
           python -m pipeline.fetch.fangraphs contracts
           python -m pipeline.fetch.statsapi people
           python -m pipeline.fetch.statsapi people-refresh
+          python -m pipeline.fetch.statsapi stats --years $Y-$Y
           python -m pipeline.fetch.azphil || echo "AZ Phil page unavailable; keeping last snapshot"
 
       - name: Build, validate, export
@@ -49,6 +50,8 @@ jobs:
           python -m pipeline.build.build_players
           python -m pytest pipeline/tests -q
           python -m pipeline.validate.run
+          python -m pipeline.model.build_panel
+          python -m pipeline.model.train
           python -m pipeline.export.export_site_json
           python - <<'EOF'
           import json, sys

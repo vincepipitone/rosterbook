@@ -32,6 +32,15 @@ export async function loadRule5(): Promise<{ meta: Meta; deadlines: Deadlines; p
   return readJson("rule5.json");
 }
 
+export async function loadNonTender(): Promise<{ meta: Meta; deadlines: Deadlines; players: (PlayerSummary & { arb_year: number | null; salary_2026: number | null; super_two: boolean })[] }> {
+  return readJson("nontender.json");
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function loadModel(): Promise<any> {
+  return readJson("model.json");
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function loadValidation(): Promise<any> {
   return readJson("validation.json");
@@ -43,4 +52,8 @@ export function fmtDate(s: string | null | undefined): string {
   if (!s) return "";
   const d = new Date(s + (s.length === 10 ? "T12:00:00Z" : ""));
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+}
+
+export function pct(x: number): string {
+  return x < 0.005 ? "<1%" : `${Math.round(x * 100)}%`;
 }

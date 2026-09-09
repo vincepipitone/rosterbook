@@ -13,7 +13,8 @@ from pipeline import config as C
 from pipeline.fetch.statsapi import load
 from pipeline.rules.catalog import CBA_PDF, CBA_SOURCE_URL, CBA_TITLE, RULES
 
-SUMMARY_KEYS = ["id", "name", "team", "pos", "bats", "throws", "age", "on_forty", "roster_status", "status_code", "on_option",
+MODEL_KEYS = ["p_none", "p_designated", "p_optioned", "p_traded", "p_released"]
+SUMMARY_KEYS = ["model"] + ["id", "name", "team", "pos", "bats", "throws", "age", "on_forty", "roster_status", "status_code", "on_option",
                 "il", "injury", "mls_prior", "mls_prior_days", "mls_now", "mls_this_season_days", "mls_end_proj", "options_left",
                 "options_left_source", "fangraphs_options", "burning_this_season", "option_days_this_season",
                 "assignments_used", "assignments_available", "prior_outrights", "prior_dfa", "acquired", "acquired_code",
@@ -32,9 +33,23 @@ def write(path, obj):
     path.write_text(json.dumps(obj, separators=(",", ":"), default=str))
 
 
+def attach_model(players: list[dict]) -> dict | None:
+    p = C.PROCESSED / "model" / "predictions.json.gz"
+    if not p.exists():
+        return None
+    m = load(p)
+    preds = {int(k): v for k, v in m["predictions"].items()}
+    for pl in players:
+        pr = preds.get(pl["id"])
+        pl["model"] = None if pr is None else {**{k: pr[k] for k in MODEL_KEYS}, "p_cut": round(pr["p_designated"] + pr["p_released"], 4),
+                                                 "reasons_designated": pr["reasons_designated"], "reasons_optioned": pr["reasons_optioned"]}
+    return m
+
+
 def main():
     data = load(C.PROCESSED / "players.json.gz")
     meta, players = data["meta"], data["players"]
+    model = attach_model(players)
     today = dt.date.today(); season = today.year
     seasons = C.load_seasons(); dl = C.DEADLINES.get(season, {})
     ws_end = C.d(seasons[season]["postSeasonEndDate"])
@@ -78,6 +93,17 @@ def main():
           for p in players if not p["on_forty"] and p["rule5"].get("eligible_this_winter")]
     write(out / "rule5.json", {"meta": meta, "deadlines": deadlines, "players": r5})
     shutil.copy(C.VALIDATION / "validation.json", out / "validation.json")
+    if model:
+        write(out / "model.json", {"meta": model["meta"], "report": model["report"]})
+    # non-tender watch: arbitration-eligible players on a 40-man, ranked by the model's cut risk
+    nt = []
+    for p in players:
+        cs = p.get("contract_status") or ""
+        if p["on_forty"] and cs.startswith("SALARY ARBITRATION"):
+            c = p.get("contract_full") or {}
+            nt.append({**slim(p), "arb_year": c.get("arb_year"), "salary_2026": c.get("salary_now"), "super_two": "SUPER TWO" in cs})
+    nt.sort(key=lambda p: -((p.get("model") or {}).get("p_cut") or 0))
+    write(out / "nontender.json", {"meta": meta, "deadlines": deadlines, "players": nt})
     print(f"{len(teams)} teams, {len(ooo)} out of options, {len(r5)} Rule 5 exposed -> {out}", file=sys.stderr)
 
 

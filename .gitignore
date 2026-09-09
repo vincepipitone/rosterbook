@@ -13,3 +13,6 @@ tsconfig.tsbuildinfo
 
 # Arizona Phil table (CC BY-ND): fetched nightly for validation, not redistributed
 data/validation/azphil_cubs_*.csv
+# rebuilt nightly by the action; 4MB + 7MB of churn per day is not worth tracking
+data/processed/model_panel.parquet
+data/processed/model/model.txt

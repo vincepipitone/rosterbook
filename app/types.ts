@@ -9,8 +9,15 @@ export type Flag = {
   cba_era?: string;
 };
 
+export type ModelReason = { feature: string; label: string; value: number | string | null; contrib: number };
+export type ModelOut = {
+  p_none: number; p_designated: number; p_optioned: number; p_traded: number; p_released: number; p_cut: number;
+  reasons_designated: ModelReason[]; reasons_optioned: ModelReason[];
+} | null;
+
 export type PlayerSummary = {
   id: number;
+  model: ModelOut;
   name: string;
   team: string;
   pos: string | null;

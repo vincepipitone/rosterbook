@@ -5,9 +5,11 @@ const SECTIONS = [
   { href: "/team/CHC", label: "Board" },
   { href: "/out-of-options", label: "Out of options" },
   { href: "/rule5", label: "Rule 5 exposure" },
+  { href: "/non-tender", label: "Non-tender watch" },
   { href: "/crunch", label: "40-man crunch" },
   { href: "/rules", label: "The rules" },
   { href: "/validation", label: "Accuracy" },
+  { href: "/model", label: "The model" },
 ];
 
 export default function SiteNav({ team }: { team?: string }) {

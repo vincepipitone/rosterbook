@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import SiteNav from "@/app/components/SiteNav";
 import Stamps from "@/app/components/Stamp";
-import { fmtDate, loadTeam, loadTeams, TEAM_ORDER } from "@/app/lib/data";
+import { fmtDate, loadTeam, loadTeams, pct, TEAM_ORDER } from "@/app/lib/data";
 import type { PlayerSummary } from "@/app/types";
 
 export const dynamicParams = false;
@@ -46,6 +46,14 @@ function Row({ p }: { p: PlayerSummary }) {
         {p.injury ? <span className="block text-[12px] text-ink-soft">{p.injury}</span> : null}
       </td>
       <td>{p.contract_status}</td>
+      <td className="num whitespace-nowrap">
+        {p.model ? (
+          <span title={`Next 90 days: designated ${pct(p.model.p_designated)}, released ${pct(p.model.p_released)}, optioned ${pct(p.model.p_optioned)}, traded ${pct(p.model.p_traded)}`}>
+            <span className={p.model.p_cut >= 0.3 ? "font-semibold text-red" : p.model.p_cut >= 0.15 ? "text-amber" : ""}>{pct(p.model.p_cut)}</span>
+            <span className="text-ink-soft"> / {pct(p.model.p_optioned)}</span>
+          </span>
+        ) : ""}
+      </td>
       <td>
         <Stamps flags={p.flags} />
       </td>
@@ -89,6 +97,7 @@ export default async function TeamPage({ params }: { params: Promise<{ abbr: str
               <th className="num">Assignments left</th>
               <th>Roster status</th>
               <th>Contract ({season + 1})</th>
+              <th className="num">Cut / option risk</th>
               <th>Rights and exposure</th>
             </tr>
           </thead>
@@ -97,7 +106,7 @@ export default async function TeamPage({ params }: { params: Promise<{ abbr: str
               byGroup[g]?.length ? (
                 <>
                   <tr className="group" key={g}>
-                    <td colSpan={9}>
+                    <td colSpan={10}>
                       {g} ({byGroup[g].filter((p) => p.status_code !== "D60").length}
                       {byGroup[g].some((p) => p.status_code === "D60") ? ` + ${byGroup[g].filter((p) => p.status_code === "D60").length} on the 60-day IL` : ""})
                     </td>
@@ -120,6 +129,8 @@ export default async function TeamPage({ params }: { params: Promise<{ abbr: str
           counts against the five-per-season cap. * = five or more years of service, so he can refuse an assignment regardless.
         </p>
         <p>
+          Cut / option risk is the model&apos;s probability that he is designated or released, and that he is optioned, within the next 90
+          days, from roster status and history alone (<Link href="/model" className="underline">how it is built and how well it does</Link>).{" "}
           <span className="stamp stamp-red">RED</span> means the club is exposed (out of options, Rule 5, free agency);{" "}
           <span className="stamp stamp-green">GREEN</span> means the player holds a consent right; <span className="stamp stamp-amber">AMBER</span> is
           something about to change. Hover a stamp for the reason, or open the player for the full explanation and history. Data as of{" "}

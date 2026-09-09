@@ -55,6 +55,16 @@ def contract_status_2027(contract: dict | None, mls_end: int | None, super_two: 
     return "PRE-ARBITRATION / AUTO-RENEWAL", "derived"
 
 
+def _contract_now(c: dict | None, season: int) -> dict:
+    if not c:
+        return {}
+    now = next((y for y in c.get("years", []) if y["season"] == season), {})
+    nxt = next((y for y in c.get("years", []) if y["season"] == season + 1), {})
+    arb = nxt.get("type") or ""
+    return {"salary_now": now.get("salary"), "type_now": now.get("type"), "arb_year": int(arb.split()[-1]) if arb.startswith("ARB") and arb.split()[-1].isdigit() else None,
+            "arb_proj": nxt.get("arb_proj")}
+
+
 def evaluate(p: dict, ctx: dict) -> dict:
     """p: assembled player record; ctx: seasons, era, today, season dates."""
     today: dt.date = ctx["today"]; era = ctx["era"]; seasons = ctx["seasons"]; season = today.year
@@ -195,6 +205,7 @@ def evaluate(p: dict, ctx: dict) -> dict:
         "acquired": p.get("acquired"), "acquired_code": p.get("acquired_code"), "original_team": p.get("originalteam"),
         "signyear": p.get("signyear"), "rule5": r5,
         "contract": {k: (p.get("contract") or {}).get(k) for k in ("description", "contract_type", "end_all", "aav", "no_trade")},
+        "contract_full": _contract_now(p.get("contract"), season),
         "contract_status": cs, "contract_status_source": cs_src,
         "flags": flags,
         "transactions": [{"date": r.date.isoformat(), "type": r.type, "subtype": r.subtype, "desc": r.description}

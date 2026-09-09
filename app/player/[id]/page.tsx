@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import SiteNav from "@/app/components/SiteNav";
 import { stampClass, stampLabel } from "@/app/components/Stamp";
-import { fmtDate, loadRules, loadTeamPlayers, loadTeams, TEAM_ORDER } from "@/app/lib/data";
+import { fmtDate, loadRules, loadTeamPlayers, loadTeams, pct, TEAM_ORDER } from "@/app/lib/data";
 import type { PlayerFull } from "@/app/types";
 
 export const dynamicParams = false;
@@ -75,6 +75,30 @@ export default async function PlayerPage({ params }: { params: Promise<{ id: str
         <div><span className="text-ink-soft">Outrighted / DFA&apos;d before</span><br />{p.prior_outrights} / {p.prior_dfa}</div>
         <div><span className="text-ink-soft">Contract</span><br />{p.contract?.description ?? "none listed"}{p.contract?.no_trade ? `; ${p.contract.no_trade}` : ""}</div>
       </div>
+
+      {p.model ? (
+        <section className="mt-8 max-w-3xl">
+          <h2 className="text-xl font-semibold">Next 90 days, by the model</h2>
+          <div className="board mt-3 grid grid-cols-2 gap-x-8 gap-y-1 sm:grid-cols-5">
+            {([["Stays put", p.model.p_none], ["Designated", p.model.p_designated], ["Optioned", p.model.p_optioned], ["Traded", p.model.p_traded], ["Released or non-tendered", p.model.p_released]] as [string, number][]).map(([l, v]) => (
+              <div key={l}><span className="text-ink-soft">{l}</span><br /><span className="text-lg font-semibold">{pct(v)}</span></div>
+            ))}
+          </div>
+          {p.model.reasons_designated.length ? (
+            <p className="mt-3 text-[15px] leading-snug">
+              Pushing the cut risk {p.model.p_cut >= 0.15 ? "up" : "around"}:{" "}
+              {p.model.reasons_designated.map((r, i) => (
+                <span key={r.feature}>{i ? ", " : ""}{r.label}{r.value !== null && typeof r.value === "number" ? ` (${Number.isInteger(r.value) ? r.value : r.value.toFixed(2)})` : ""} {r.contrib > 0 ? "raises it" : "lowers it"}</span>
+              ))}.
+            </p>
+          ) : null}
+          <p className="mt-1 text-sm text-ink-soft">
+            Trained on every 40-man roster snapshot since 2011 and what happened in the following 90 days; it sees roster status, options,
+            service, history and last season&apos;s line, not this season&apos;s performance or the club&apos;s intentions.{" "}
+            <Link href="/model" className="underline">How well it does.</Link>
+          </p>
+        </section>
+      ) : null}
 
       {p.postseason ? (
         <section className="mt-8 max-w-3xl border-l-2 border-ink pl-3">
