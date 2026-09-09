@@ -94,7 +94,9 @@ def main():
     write(out / "rule5.json", {"meta": meta, "deadlines": deadlines, "players": r5})
     shutil.copy(C.VALIDATION / "validation.json", out / "validation.json")
     if model:
-        write(out / "model.json", {"meta": model["meta"], "report": model["report"]})
+        abl = C.PROCESSED / "model" / "ablation.json"
+        write(out / "model.json", {"meta": model["meta"], "report": model["report"],
+                                   "ablation": json.loads(abl.read_text()) if abl.exists() else None})
     # non-tender watch: arbitration-eligible players on a 40-man, ranked by the model's cut risk
     nt = []
     for p in players:

@@ -1,0 +1,66 @@
+{
+ "base": {
+  "logloss": 0.534,
+  "logloss_tender": 0.4041,
+  "auc_designated": 0.8821,
+  "auc_released": 0.8868,
+  "auc_released_tender": 0.9062,
+  "auc_designated_tender": 0.8911
+ },
+ "+war": {
+  "logloss": 0.5298,
+  "logloss_tender": 0.3993,
+  "auc_designated": 0.8876,
+  "auc_released": 0.8929,
+  "auc_released_tender": 0.9124,
+  "auc_designated_tender": 0.8998
+ },
+ "+role": {
+  "logloss": 0.5336,
+  "logloss_tender": 0.4037,
+  "auc_designated": 0.8822,
+  "auc_released": 0.887,
+  "auc_released_tender": 0.9064,
+  "auc_designated_tender": 0.8922
+ },
+ "+rank": {
+  "logloss": 0.5331,
+  "logloss_tender": 0.404,
+  "auc_designated": 0.883,
+  "auc_released": 0.8897,
+  "auc_released_tender": 0.9085,
+  "auc_designated_tender": 0.8928
+ },
+ "+injury": {
+  "logloss": 0.5333,
+  "logloss_tender": 0.4039,
+  "auc_designated": 0.8822,
+  "auc_released": 0.8863,
+  "auc_released_tender": 0.9054,
+  "auc_designated_tender": 0.8919
+ },
+ "+recency": {
+  "logloss": 0.5319,
+  "logloss_tender": 0.4052,
+  "auc_designated": 0.8822,
+  "auc_released": 0.8877,
+  "auc_released_tender": 0.9048,
+  "auc_designated_tender": 0.8902
+ },
+ "+team": {
+  "logloss": 0.5297,
+  "logloss_tender": 0.4036,
+  "auc_designated": 0.8829,
+  "auc_released": 0.8886,
+  "auc_released_tender": 0.9051,
+  "auc_designated_tender": 0.8913
+ },
+ "+all": {
+  "logloss": 0.5227,
+  "logloss_tender": 0.3996,
+  "auc_designated": 0.8893,
+  "auc_released": 0.8959,
+  "auc_released_tender": 0.9144,
+  "auc_designated_tender": 0.8994
+ }
+}

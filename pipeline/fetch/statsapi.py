@@ -224,6 +224,25 @@ def fetch_stats(year: int) -> None:
         print(year, group, len(rows), file=sys.stderr)
 
 
+# ---------------------------------------------------------------- standings on snapshot dates
+def fetch_standings(dates: list[dt.date]) -> None:
+    for date in dates:
+        p = C.RAW / "standings" / f"{date.isoformat()}.json"
+        if p.exists():
+            continue
+        season = date.year if date.month >= 3 else date.year - 1
+        data = get("/standings", leagueId="103,104", season=season, date=date.isoformat())
+        rows = [{"team": t["team"]["id"], "w": t.get("wins"), "l": t.get("losses"), "pct": t.get("winningPercentage"),
+                 "rd": t.get("runDifferential"), "div_rank": t.get("divisionRank"), "gb": t.get("gamesBack")}
+                for r in data.get("records", []) for t in r.get("teamRecords", [])]
+        dump(rows, p)
+        time.sleep(0.2)
+
+
+def snapshot_dates_all() -> list[dt.date]:
+    return sorted({dt.date.fromisoformat(p.name[:10]) for p in (C.RAW / "rosters").rglob("*.json")})
+
+
 # ---------------------------------------------------------------- draft
 def fetch_draft(year: int) -> None:
     data = get(f"/draft/{year}")
@@ -242,7 +261,7 @@ def fetch_draft(year: int) -> None:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("what", choices=["seasons", "transactions", "rosters", "people", "people-refresh", "draft", "stats"])
+    ap.add_argument("what", choices=["seasons", "transactions", "rosters", "people", "people-refresh", "draft", "stats", "standings"])
     ap.add_argument("--years")
     ap.add_argument("--dates", default="snapshot")
     a = ap.parse_args()
@@ -259,6 +278,8 @@ if __name__ == "__main__":
         latest = max(d for d in (C.RAW / "fg_roster").glob("*") if d.is_dir())
         ids = sorted({r["mlbamid"] for p in latest.glob("*.json") for r in load(p) if r.get("mlbamid")})
         refresh_people(ids)
+    elif a.what == "standings":
+        fetch_standings(snapshot_dates_all())
     elif a.what == "stats":
         for y in years_arg(a.years, f"{C.FIRST_SEASON - 1}-{C.CURRENT_SEASON}"):
             fetch_stats(y)

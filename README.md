@@ -74,8 +74,9 @@ Chadwick Bureau. Not affiliated with MLB, the MLBPA or any club.
 `pipeline/model/build_panel.py` turns every dated 40-man snapshot since 2011 (~190k player-snapshot
 rows) into as-of features plus the first club-driven event in the next 90 days (designated /
 optioned / traded / released-or-non-tendered / none). `train.py` fits a multiclass LightGBM,
-evaluates it leave-one-season-out (pooled log loss 0.550 vs 0.730 for a time-of-year base rate;
-AUC designated .86, optioned .93, released .87, traded .72), publishes decile calibration and
+evaluates it leave-one-season-out (pooled log loss 0.523 vs 0.730 for a time-of-year base rate;
+AUC designated .89, optioned .94, released .90, traded .74; `ablate.py` records what each feature
+group bought), publishes decile calibration and
 feature gain on `/model`, and scores the current snapshot with built-in SHAP reasons. Features include
 this season's line (for snapshots from September 1 on), whether the player was acquired by trade
 or claim in the last 60 days, and positional depth on the 40-man. Outputs feed the board (cut /

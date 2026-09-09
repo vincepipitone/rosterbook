@@ -97,6 +97,24 @@ def fetch_projections(date: dt.date | None = None) -> None:
             time.sleep(1.5)
 
 
+def fetch_war(years: list[int]) -> None:
+    """Season WAR (and FIP/wRC+) for every player from the FanGraphs leaderboard, one call per season/group."""
+    keep = ["xMLBAMID", "PlayerName", "Season", "G", "GS", "PA", "IP", "WAR", "wRC+", "wOBA", "FIP", "ERA", "K%", "BB%", "Off", "Def", "BsR", "xFIP", "SV"]
+    for y in years:
+        for stats in ("bat", "pit"):
+            p = C.RAW / "fg_war" / f"{y}_{stats}.json.gz"
+            if p.exists() and y < C.CURRENT_SEASON:
+                continue
+            url = (f"https://www.fangraphs.com/api/leaders/major-league/data?age=&pos=all&stats={stats}&lg=all&qual=0"
+                   f"&season={y}&season1={y}&ind=0&team=0&pageitems=5000&pagenum=1")
+            d = get(url)
+            rows = d.get("data", d) if isinstance(d, dict) else d
+            slim = [{k: r.get(k) for k in keep} for r in rows if r.get("xMLBAMID")]
+            dump(slim, p)
+            print(y, stats, len(slim), file=sys.stderr)
+            time.sleep(1.5)
+
+
 def fetch_tracker(years: list[int]) -> None:
     for y in years:
         rows = get(f"https://www.fangraphs.com/api/roster-resource/transaction-tracker/data?season={y}")
@@ -107,7 +125,7 @@ def fetch_tracker(years: list[int]) -> None:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("what", choices=["roster", "tracker", "contracts", "projections"])
+    ap.add_argument("what", choices=["roster", "tracker", "contracts", "projections", "war"])
     ap.add_argument("--years")
     a = ap.parse_args()
     if a.what == "roster":
@@ -116,5 +134,7 @@ if __name__ == "__main__":
         fetch_contracts(C.CURRENT_SEASON)
     elif a.what == "projections":
         fetch_projections()
+    elif a.what == "war":
+        fetch_war(years_arg(a.years, f"{C.FIRST_SEASON - 1}-{C.CURRENT_SEASON}"))
     else:
         fetch_tracker(years_arg(a.years, "2020-2026"))

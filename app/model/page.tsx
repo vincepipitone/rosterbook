@@ -3,10 +3,15 @@ import { loadModel, pct } from "@/app/lib/data";
 
 export const metadata = { title: "The model" };
 
+const ABL: Record<string, string> = {
+  base: "Roster mechanics, history, this season's line, depth (previous model)", "+war": "+ FanGraphs WAR history (two seasons, this season, wRC+, FIP, change)",
+  "+role": "+ starter / reliever share", "+rank": "+ WAR rank within the club's position group", "+injury": "+ IL days this season, 60-day IL",
+  "+recency": "+ moves in the last year, Rule 5 pick, days since last move", "+team": "+ club record and run differential", "+all": "All groups together (current model)",
+};
 const LABEL: Record<string, string> = { none: "Stays put", designated: "Designated", optioned: "Optioned", traded: "Traded", released: "Released / non-tendered" };
 
 export default async function ModelPage() {
-  const { meta, report } = await loadModel();
+  const { meta, report, ablation } = await loadModel();
   const seasons = Object.entries(report.seasons as Record<string, { n: number; logloss: number; logloss_base: number; auc: Record<string, number | null> }>);
   const pooled = report.pooled;
   return (
@@ -23,9 +28,11 @@ export default async function ModelPage() {
         </p>
         <p className="prose-narrow mt-2 text-[15px] leading-snug">
           It sees only what was knowable on the snapshot date: roster status, option years used and option days, times optioned this season,
-          service time where published, age and years since debut, how and when the player joined the club, his prior DFAs, outrights, claims
-          and trades, the club&apos;s 40-man and 60-day IL counts, the time of year, and last season&apos;s stat line. It does not see this
-          season&apos;s performance, injuries beyond the IL status, contracts, or anything a front office knows.
+          service time where published, age and years since debut, how and when the player joined the club (including a trade or claim in
+          the last 60 days), his prior DFAs, outrights, claims and trades and how recent they were, IL days this season, the club&apos;s
+          40-man and 60-day IL counts and depth at his position, the club&apos;s record, the time of year, FanGraphs WAR for the last two
+          seasons and his rank at his position on the club, last season&apos;s stat line, and this season&apos;s line once September arrives.
+          It does not see contracts, projected arbitration salaries, or anything a front office knows about health or intent.
         </p>
       </div>
 
@@ -67,6 +74,24 @@ export default async function ModelPage() {
           ))}
         </div>
       </section>
+
+      {ablation ? (
+        <section className="mt-8 max-w-3xl">
+          <h2 className="text-xl font-semibold">What was tried</h2>
+          <p className="mt-1 text-sm text-ink-soft">
+            Feature groups added one at a time to the previous model, each scored leave-one-season-out. &ldquo;Tender window&rdquo; is the
+            reserve-list filing and tender-day snapshots only. Lower log loss and higher AUC are better. All groups were adopted.
+          </p>
+          <table className="board mt-3">
+            <thead><tr><th>Configuration</th><th className="num">Log loss</th><th className="num">Log loss, tender window</th><th className="num">AUC designated</th><th className="num">AUC released, tender</th></tr></thead>
+            <tbody>
+              {Object.entries(ablation as Record<string, Record<string, number>>).map(([k, r]) => (
+                <tr key={k}><td>{ABL[k] ?? k}</td><td className="num">{r.logloss}</td><td className="num">{r.logloss_tender}</td><td className="num">{r.auc_designated}</td><td className="num">{r.auc_released_tender}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      ) : null}
 
       <section className="mt-8 max-w-3xl">
         <h2 className="text-xl font-semibold">What it leans on</h2>

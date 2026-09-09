@@ -26,7 +26,11 @@ FEATURES = ["phase", "status_code", "pos_group", "age", "yrs_since_debut", "n40"
             "prior_outrights", "prior_dfa", "prior_claims", "prior_trades", "prior_options", "prior_releases", "n_txn",
             "days_with_club", "join_type", "opts_this_season", "il_this_season", "opt_years_used", "opt_days_this_season",
             "options_left_est", "p_pa", "p_ops", "p_k", "p_bb", "p_hr", "p_ip", "p_era", "p_whip", "p_gs", "p_pk", "p_pbb", "mls_start",
-            "c_pa", "c_ops", "c_k", "c_ip", "c_era", "c_whip", "c_pk", "recent_trade", "recent_claim", "grp_n", "grp_optioned", "grp_vets"]
+            "c_pa", "c_ops", "c_k", "c_ip", "c_era", "c_whip", "c_pk", "recent_trade", "recent_claim", "grp_n", "grp_optioned", "grp_vets",
+            # adopted after the 2026-09-09 ablation (pipeline/model/ablate.py): WAR history, role, rank in group, injury, recency, standings
+            "war_prev", "war_prev2", "war_cur", "wrc_prev", "fip_prev", "xfip_prev", "sv_prev", "war_delta", "gs_share_prev",
+            "war_rank_group", "war_rank_pct", "war_gap_group", "il_days_this_season", "on_il60",
+            "dfa_365", "claims_365", "outrights_365", "moves_365", "days_since_txn", "rule5_pick", "team_pct", "team_rd"]
 CATS = ["phase", "status_code", "pos_group", "join_type"]
 PARAMS = dict(objective="multiclass", num_class=len(LABELS), learning_rate=0.05, num_leaves=31, min_data_in_leaf=200,
               feature_fraction=0.8, bagging_fraction=0.8, bagging_freq=1, lambda_l2=5.0, verbose=-1, seed=7)
@@ -47,6 +51,13 @@ PHRASES = {
     "c_era": "this season's ERA", "c_whip": "this season's WHIP", "c_pk": "this season's strikeout rate",
     "recent_trade": "acquired by trade in the last 60 days", "recent_claim": "claimed off waivers in the last 60 days",
     "grp_n": "players at his position group on the 40-man", "grp_optioned": "same-position players on option", "grp_vets": "same-position six-year veterans",
+    "war_prev": "last season's WAR", "war_prev2": "WAR two seasons ago", "war_cur": "this season's WAR", "wrc_prev": "last season's wRC+",
+    "fip_prev": "last season's FIP", "xfip_prev": "last season's xFIP", "sv_prev": "last season's saves", "war_delta": "year-over-year WAR change",
+    "gs_share_prev": "share of appearances as a starter", "war_rank_group": "WAR rank among the club's players at his position",
+    "war_rank_pct": "WAR rank among the club's players at his position", "war_gap_group": "WAR versus the club's median at his position",
+    "il_days_this_season": "IL days this season", "on_il60": "on the 60-day IL", "dfa_365": "DFAs in the last year", "claims_365": "waiver claims in the last year",
+    "outrights_365": "outrights in the last year", "moves_365": "roster moves in the last year", "days_since_txn": "days since his last transaction",
+    "rule5_pick": "Rule 5 pick", "team_pct": "club's winning percentage", "team_rd": "club's run differential",
 }
 
 
