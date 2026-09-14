@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-13T15:24:22+00:00",
+ "generated_at": "2026-09-14T17:20:54+00:00",
  "azphil": {
   "source": "thecubreporter.com/cubs-40-man-roster",
   "page_updated": "9-12-2026",
-  "compared_on": "2026-09-13",
+  "compared_on": "2026-09-14",
   "stale": false,
   "n_rows": 49,
   "n_matched": 49,
@@ -1455,13 +1455,13 @@
  },
  "fangraphs": {
   "source": "FanGraphs RosterResource options (current snapshot)",
-  "n": 1014,
-  "exact": 981,
+  "n": 1013,
+  "exact": 980,
   "pct": 96.7,
   "confusion": {
    "3->3": 413,
    "1->1": 209,
-   "0->0": 113,
+   "0->0": 112,
    "2->2": 246,
    "0->1": 3,
    "2->1": 11,
@@ -2171,23 +2171,23 @@
    },
    "2026": {
     "designated": {
-     "n": 541,
-     "expected": 384,
+     "n": 543,
+     "expected": 386,
      "ok": true
     },
     "traded": {
      "n": 410,
-     "expected": 292,
+     "expected": 293,
      "ok": true
     },
     "optioned": {
-     "n": 1437,
-     "expected": 1066,
+     "n": 1438,
+     "expected": 1070,
      "ok": true
     },
     "outrighted": {
-     "n": 288,
-     "expected": 268,
+     "n": 290,
+     "expected": 269,
      "ok": true
     },
     "released": {
@@ -2196,8 +2196,8 @@
      "ok": true
     },
     "selected": {
-     "n": 439,
-     "expected": 377,
+     "n": 440,
+     "expected": 378,
      "ok": true
     }
    }
