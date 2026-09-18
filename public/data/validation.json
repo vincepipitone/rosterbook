@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-17T15:58:35+00:00",
+ "generated_at": "2026-09-18T15:32:55+00:00",
  "azphil": {
   "source": "thecubreporter.com/cubs-40-man-roster",
   "page_updated": "9-12-2026",
-  "compared_on": "2026-09-17",
+  "compared_on": "2026-09-18",
   "stale": false,
   "n_rows": 49,
   "n_matched": 49,
@@ -1455,13 +1455,13 @@
  },
  "fangraphs": {
   "source": "FanGraphs RosterResource options (current snapshot)",
-  "n": 1013,
-  "exact": 980,
+  "n": 1011,
+  "exact": 978,
   "pct": 96.7,
   "confusion": {
    "3->3": 413,
-   "1->1": 210,
-   "0->0": 112,
+   "1->1": 209,
+   "0->0": 111,
    "2->2": 245,
    "0->1": 3,
    "2->1": 11,
@@ -1622,6 +1622,16 @@
     ]
    },
    {
+    "name": "Ben Casparius",
+    "team": "LAD",
+    "fangraphs": 2,
+    "ours": 1,
+    "burned": [
+     "2024",
+     "2025"
+    ]
+   },
+   {
     "name": "Bobby Miller",
     "team": "LAD",
     "fangraphs": 2,
@@ -1630,16 +1640,6 @@
      "2024",
      "2025",
      "2026"
-    ]
-   },
-   {
-    "name": "Ben Casparius",
-    "team": "LAD",
-    "fangraphs": 2,
-    "ours": 1,
-    "burned": [
-     "2024",
-     "2025"
     ]
    },
    {
@@ -2171,33 +2171,33 @@
    },
    "2026": {
     "designated": {
-     "n": 549,
-     "expected": 390,
+     "n": 550,
+     "expected": 392,
      "ok": true
     },
     "traded": {
      "n": 410,
-     "expected": 296,
+     "expected": 298,
      "ok": true
     },
     "optioned": {
-     "n": 1461,
-     "expected": 1083,
+     "n": 1464,
+     "expected": 1087,
      "ok": true
     },
     "outrighted": {
      "n": 291,
-     "expected": 272,
+     "expected": 273,
      "ok": true
     },
     "released": {
-     "n": 98,
+     "n": 99,
      "expected": 86,
      "ok": true
     },
     "selected": {
      "n": 441,
-     "expected": 383,
+     "expected": 384,
      "ok": true
     }
    }
