@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-18T15:32:55+00:00",
+ "generated_at": "2026-09-19T15:07:53+00:00",
  "azphil": {
   "source": "thecubreporter.com/cubs-40-man-roster",
-  "page_updated": "9-12-2026",
-  "compared_on": "2026-09-18",
+  "page_updated": "9-18-2026",
+  "compared_on": "2026-09-19",
   "stale": false,
   "n_rows": 49,
   "n_matched": 49,
@@ -17,12 +17,12 @@
     "pct": 95.9
    },
    "assignments": {
-    "n": 48,
-    "pct": 98.0
+    "n": 47,
+    "pct": 95.9
    },
    "status": {
-    "n": 48,
-    "pct": 98.0
+    "n": 49,
+    "pct": 100.0
    },
    "contract": {
     "n": 47,
@@ -547,7 +547,7 @@
      "agree": true
     },
     "contract": {
-     "azphil": "SIGNED THRU 2027 + 2028 CLUB OPTION",
+     "azphil": "SIGNED THRU 2027",
      "ours": "SIGNED THRU 2027 + 2028 CLUB OPTION",
      "agree": true
     }
@@ -1118,12 +1118,12 @@
     },
     "assignments": {
      "azphil": "5",
-     "ours": "5",
-     "agree": true
+     "ours": "4",
+     "agree": false
     },
     "status": {
-     "azphil": "ACTIVE",
-     "ours": "ACTIVE",
+     "azphil": "OPTIONED",
+     "ours": "OPTIONED",
      "agree": true
     },
     "contract": {
@@ -1210,8 +1210,8 @@
     },
     "status": {
      "azphil": "ACTIVE",
-     "ours": "10-DAY IL",
-     "agree": false
+     "ours": "ACTIVE",
+     "agree": true
     },
     "contract": {
      "azphil": "SIGNED THRU 2029",
@@ -1455,18 +1455,18 @@
  },
  "fangraphs": {
   "source": "FanGraphs RosterResource options (current snapshot)",
-  "n": 1011,
-  "exact": 978,
+  "n": 1014,
+  "exact": 981,
   "pct": 96.7,
   "confusion": {
-   "3->3": 413,
-   "1->1": 209,
+   "3->3": 414,
+   "1->1": 210,
    "0->0": 111,
-   "2->2": 245,
+   "2->2": 246,
    "0->1": 3,
    "2->1": 11,
-   "1->2": 8,
    "2->3": 3,
+   "1->2": 8,
    "3->2": 8
   },
   "disagreements": [
@@ -1494,22 +1494,22 @@
     ]
    },
    {
-    "name": "Codi Heuer",
-    "team": "BAL",
-    "fangraphs": 1,
-    "ours": 2,
-    "burned": [
-     "2025",
-     "2026"
-    ]
-   },
-   {
     "name": "Cade Povich",
     "team": "BAL",
     "fangraphs": 2,
     "ours": 3,
     "burned": [
      "2024",
+     "2025",
+     "2026"
+    ]
+   },
+   {
+    "name": "Codi Heuer",
+    "team": "BAL",
+    "fangraphs": 1,
+    "ours": 2,
+    "burned": [
      "2025",
      "2026"
     ]
@@ -2171,33 +2171,33 @@
    },
    "2026": {
     "designated": {
-     "n": 550,
-     "expected": 392,
+     "n": 551,
+     "expected": 393,
      "ok": true
     },
     "traded": {
      "n": 410,
-     "expected": 298,
+     "expected": 299,
      "ok": true
     },
     "optioned": {
-     "n": 1464,
-     "expected": 1087,
+     "n": 1471,
+     "expected": 1091,
      "ok": true
     },
     "outrighted": {
-     "n": 291,
-     "expected": 273,
+     "n": 293,
+     "expected": 274,
      "ok": true
     },
     "released": {
-     "n": 99,
-     "expected": 86,
+     "n": 101,
+     "expected": 87,
      "ok": true
     },
     "selected": {
-     "n": 441,
-     "expected": 384,
+     "n": 443,
+     "expected": 386,
      "ok": true
     }
    }
